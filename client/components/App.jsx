@@ -48,6 +48,8 @@ class App extends React.Component {
         </div>
 
         <Booked rest={this.state.restaurantId} />
+
+        <div id="count">You're in luck! We still have x timeslots left</div>
       </div>
     );
   }
