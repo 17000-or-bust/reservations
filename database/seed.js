@@ -20,3 +20,18 @@ let seedRestaurants = n => {
 
   return commands.replace(/;/gi, ';\n');
 };
+
+// n should be same as input to seedRestaurants
+let seedReservations = n => {
+  var commands = '';
+
+  for (var i = 1; i <= n; i++) {
+    let restaurantId = i;
+    let date = '2019-02-14';
+    let time = '19:00';
+
+    var insert = `INSERT INTO reservations (restaurant_id, date, time) VALUE (${restaurantId}, '${date}', '${time}');`;
+    commands += insert;
+  }
+  return commands.replace(/;/gi, ';\n');
+};

@@ -1,4 +1,5 @@
--- CREATE DATABASE reservations;
+DROP DATABASE IF EXISTS reservations;
+CREATE DATABASE reservations;
 USE reservations;
 
 
@@ -18,7 +19,6 @@ CREATE TABLE reservations (
   restaurant_id INT,
   date DATE,
   time TIME,
-  party_size INT,
   FOREIGN KEY (restaurant_id) REFERENCES restaurants(id)
 );
 
@@ -125,3 +125,104 @@ INSERT INTO restaurants (max_party_size, max_days_to_book, has_rewards, time_slo
 INSERT INTO restaurants (max_party_size, max_days_to_book, has_rewards, time_slot_interval, start_hour, end_hour, bookings_today) VALUES (12, 81, 0, '00:15:00', '17:00', '22:00', 122);
 INSERT INTO restaurants (max_party_size, max_days_to_book, has_rewards, time_slot_interval, start_hour, end_hour, bookings_today) VALUES (16, 60, 1, '00:15:00', '17:00', '22:00', 91);
 
+-- Seed reservations with random data
+INSERT INTO reservations (restaurant_id, date, time) VALUE (1, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (2, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (3, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (4, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (5, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (6, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (7, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (8, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (9, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (10, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (11, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (12, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (13, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (14, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (15, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (16, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (17, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (18, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (19, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (20, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (21, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (22, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (23, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (24, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (25, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (26, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (27, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (28, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (29, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (30, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (31, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (32, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (33, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (34, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (35, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (36, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (37, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (38, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (39, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (40, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (41, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (42, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (43, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (44, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (45, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (46, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (47, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (48, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (49, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (50, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (51, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (52, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (53, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (54, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (55, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (56, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (57, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (58, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (59, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (60, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (61, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (62, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (63, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (64, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (65, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (66, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (67, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (68, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (69, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (70, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (71, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (72, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (73, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (74, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (75, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (76, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (77, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (78, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (79, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (80, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (81, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (82, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (83, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (84, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (85, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (86, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (87, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (88, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (89, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (90, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (91, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (92, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (93, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (94, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (95, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (96, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (97, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (98, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (99, '2019-02-14', '19:00');
+INSERT INTO reservations (restaurant_id, date, time) VALUE (100, '2019-02-14', '19:00');
