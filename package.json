@@ -9,7 +9,8 @@
   },
   "scripts": {
     "mysql-seed": "mysql -u root < database/schema.sql",
-    "pack": "webpack --watch"
+    "pack": "webpack --watch",
+    "test": "jest --verbose"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -26,6 +27,7 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.1.0",
     "babel-loader": "^8.0.5",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.1",
@@ -37,5 +39,11 @@
     "webpack": "^4.29.3",
     "webpack-cli": "^3.2.3",
     "webpack-dev-server": "^3.1.14"
+  },
+  "babel": {
+    "presets": [
+      "@babel/env",
+      "@babel/react"
+    ]
   }
 }
