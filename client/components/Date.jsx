@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 
-let Date = () => {
+let Date = props => {
   // Determine month/year for calendar header
   var month = moment().month();
   var year = moment().year();
@@ -51,7 +51,11 @@ let Date = () => {
           <div className="row" key={week}>
             {week.map(day => {
               return (
-                <div className="box" key={day}>
+                <div
+                  className="box"
+                  key={day}
+                  onClick={e => props.change(e, day.format('YYYY-MM-DD'))}
+                >
                   {day.format('D')}
                 </div>
               );

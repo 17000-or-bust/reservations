@@ -1,6 +1,7 @@
 import React from 'react';
 import Date from './Date.jsx';
 import Booked from './Booked.jsx';
+import moment from 'moment';
 
 class App extends React.Component {
   constructor(props) {
@@ -11,6 +12,22 @@ class App extends React.Component {
       time: '19:00',
       partySize: 2
     };
+
+    this.changeDate = this.changeDate.bind(this);
+  }
+
+  changeDate(event, date) {
+    event.preventDefault();
+    if (moment().isSameOrBefore(date, 'day')) {
+      this.setState(
+        {
+          date: date
+        },
+        () => {
+          console.log('save the date!', this.state.date);
+        }
+      );
+    }
   }
 
   render() {
@@ -28,7 +45,7 @@ class App extends React.Component {
         </div>
 
         <div id="datetime">
-          <Date />
+          <Date change={this.changeDate} />
           <div id="time">
             <select>
               <option>6:30 PM</option>
