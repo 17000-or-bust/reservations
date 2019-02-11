@@ -2,6 +2,17 @@ import React from 'react';
 import moment from 'moment';
 
 let Date = () => {
+  // Determine month/year for calendar header
+  var month = moment().month();
+  var year = moment().year();
+  var monthYear =
+    moment()
+      .month(month)
+      .format('MMMM') +
+    ' ' +
+    year;
+
+  // Determine days and dates on calendar
   var dates = [];
   var days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   var firstWeek = moment()
@@ -23,6 +34,9 @@ let Date = () => {
 
   return (
     <div id="date">
+      <div id="header">
+        <div id="month">{monthYear}</div>
+      </div>
       <div id="days">
         {days.map(day => {
           return (
