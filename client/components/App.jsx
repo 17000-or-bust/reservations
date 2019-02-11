@@ -1,4 +1,5 @@
 import React from 'react';
+import Date from './Date.jsx';
 import Booked from './Booked.jsx';
 
 class App extends React.Component {
@@ -27,13 +28,7 @@ class App extends React.Component {
         </div>
 
         <div id="datetime">
-          <div id="date">
-            <select>
-              <option>Monday</option>
-              <option>Tuesday</option>
-              <option>Wednesday</option>
-            </select>
-          </div>
+          <Date />
           <div id="time">
             <select>
               <option>6:30 PM</option>
