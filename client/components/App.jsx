@@ -1,4 +1,5 @@
 import React from 'react';
+import Hour from './Hour.jsx';
 import Booked from './Booked.jsx';
 
 class App extends React.Component {
@@ -7,9 +8,16 @@ class App extends React.Component {
     this.state = {
       restaurantId: Math.round(Math.random() * 100) || 0,
       date: '2019-02-14',
-      time: '19:00',
+      time: '7:00 PM',
       partySize: 2
     };
+  }
+
+  changeTime(event, time) {
+    event.preventDefault();
+    this.setState({
+      time: time
+    });
   }
 
   render() {
@@ -35,11 +43,7 @@ class App extends React.Component {
             </select>
           </div>
           <div id="time">
-            <select>
-              <option>6:30 PM</option>
-              <option>7:00 PM</option>
-              <option>7:30 PM</option>
-            </select>
+            <Hour hour={this.state.time} change={this.changeTime.bind(this)} />
           </div>
         </div>
 
