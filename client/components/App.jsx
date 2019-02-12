@@ -1,22 +1,26 @@
 import React from 'react';
+import moment from 'moment';
 import Hour from './Hour.jsx';
 import Booked from './Booked.jsx';
+import Reserve from './Reserve.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      restaurantId: Math.round(Math.random() * 100) || 0,
+      restaurantId: Math.round(Math.random() * 100) || 1,
       date: '2019-02-14',
-      time: '7:00 PM',
-      partySize: 2
+      time: '19:00',
+      partySize: 2,
+      error: false
     };
   }
 
   changeTime(event, time) {
     event.preventDefault();
+    var timeTwentyFour = moment(time, ['h:mm A']).format('HH:mm');
     this.setState({
-      time: time
+      time: timeTwentyFour
     });
   }
 
@@ -47,9 +51,12 @@ class App extends React.Component {
           </div>
         </div>
 
-        <div id="find">
-          <button>Find a Table</button>
-        </div>
+        <Reserve
+          error={this.state.error}
+          restId={this.state.restaurantId}
+          date={this.state.date}
+          time={this.state.time}
+        />
 
         <Booked rest={this.state.restaurantId} />
 
