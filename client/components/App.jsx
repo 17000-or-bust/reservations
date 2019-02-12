@@ -12,7 +12,7 @@ class App extends React.Component {
       date: '2019-02-14',
       time: '19:00',
       partySize: 2,
-      error: false
+      buttonShown: true
     };
   }
 
@@ -20,7 +20,14 @@ class App extends React.Component {
     event.preventDefault();
     var timeTwentyFour = moment(time, ['h:mm A']).format('HH:mm');
     this.setState({
-      time: timeTwentyFour
+      time: timeTwentyFour,
+      buttonShown: true
+    });
+  }
+
+  toggleButton() {
+    this.setState({
+      buttonShown: !this.state.buttonShown
     });
   }
 
@@ -52,15 +59,14 @@ class App extends React.Component {
         </div>
 
         <Reserve
-          error={this.state.error}
+          btn={this.state.buttonShown}
           restId={this.state.restaurantId}
           date={this.state.date}
           time={this.state.time}
+          toggleBtn={this.toggleButton.bind(this)}
         />
 
         <Booked rest={this.state.restaurantId} />
-
-        <div id="count">You're in luck! We still have x timeslots left</div>
       </div>
     );
   }

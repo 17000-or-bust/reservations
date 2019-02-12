@@ -1,11 +1,13 @@
 import React from 'react';
 import $ from 'jquery';
+import moment from 'moment';
 
 class Reserve extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      times: []
+      times: [],
+      error: false
     };
 
     this.findTimes = this.findTimes.bind(this);
@@ -22,6 +24,17 @@ class Reserve extends React.Component {
       data: {},
       success: times => {
         console.log('We have seats at these times!', times);
+        var timeAmPm = times.map(time =>
+          moment(time, ['HH:mm']).format('h:mm A')
+        );
+        this.setState(
+          {
+            times: timeAmPm
+          },
+          () => {
+            this.props.toggleBtn();
+          }
+        );
       },
       error: err => {
         console.log('Error getting times: ', err);
@@ -30,19 +43,50 @@ class Reserve extends React.Component {
   }
 
   render() {
-    if (this.props.error) {
-      return (
-        <div id="reserve">
-          Unfortunately, this restaurant can't accept that reservation. Have
-          another time in mind?
-        </div>
-      );
-    } else {
+    var times = this.state.times;
+    if (this.props.btn) {
       return (
         <div id="reserve">
           <button onClick={e => this.findTimes(e)}>Find a Table</button>
         </div>
       );
+    } else {
+      if (this.state.error) {
+        return (
+          <div id="reserve">
+            Unfortunately, this restaurant can't accept that reservation. Have
+            another time in mind?
+          </div>
+        );
+      } else if (times.length > 0) {
+        var count =
+          times.length < 5 ? (
+            <div id="count">
+              You're in luck! We still have {times.length} timeslots left
+            </div>
+          ) : (
+            ''
+          );
+        return (
+          <div id="reserve">
+            {times.map(time => {
+              return (
+                <div className="timeSlot" key={time}>
+                  {time}
+                </div>
+              );
+            })}
+            <div id="count">{count}</div>
+          </div>
+        );
+      } else {
+        return (
+          <div id="reserve">
+            At the moment, there's no online availability within 2.5 hours of{' '}
+            {this.props.time}. Have another time in mind?
+          </div>
+        );
+      }
     }
   }
 }
