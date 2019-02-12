@@ -42,12 +42,15 @@ app.get('/api/reserve/query/:id/:date/:time', (req, res) => {
 
   // scan from 2.5 hours before queried time to 2.5 hours after
   for (var i = 1; i <= max * 2; i++) {
-    var laterTime = dummyTime.add(window, 'minute').format('HH:mm');
+    var laterTime = dummyTime
+      .add(window, 'minute')
+      .format('HH:mm')
+      .toString();
 
     testTimes.push(laterTime);
   }
 
-  var queriesLeft = testTimes.length - 1;
+  var numQueries = 0;
   console.log('Searching for seats at these times:', testTimes);
 
   let sendTimes = (err, time) => {
@@ -55,7 +58,10 @@ app.get('/api/reserve/query/:id/:date/:time', (req, res) => {
       console.error(err);
       return;
     } else {
-      times.push(time);
+      if (!time[0]) {
+        console.log(numQueries);
+        times.push(testTimes[numQueries]);
+      }
       res.status(200).send(times);
     }
   };
@@ -64,18 +70,21 @@ app.get('/api/reserve/query/:id/:date/:time', (req, res) => {
     if (err) {
       console.error(err);
       return;
-    } else if (queriesLeft) {
-      if (time[0]) {
-        times.push(time);
-      }
-      queriesLeft--;
-      getOpenTime(id, date, testTimes[queriesLeft], nextQuery);
     } else {
-      getOpenTime(id, date, testTimes[queriesLeft], sendTimes);
+      if (!time[0]) {
+        times.push(testTimes[numQueries]);
+      }
+      numQueries++;
+
+      if (numQueries < testTimes.length - 1) {
+        getOpenTime(id, date, testTimes[numQueries], nextQuery);
+      } else {
+        getOpenTime(id, date, testTimes[numQueries], sendTimes);
+      }
     }
   };
 
-  getOpenTime(id, date, time, nextQuery);
+  getOpenTime(id, date, testTimes[numQueries], nextQuery);
 });
 
 app.listen(port, err => {
