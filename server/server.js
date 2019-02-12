@@ -1,10 +1,11 @@
 let express = require('express');
 let morgan = require('morgan');
 let bodyParser = require('body-parser');
+let moment = require('moment');
 
 const port = 3003;
 const { connection } = require('../database/index.js');
-const { getBooksOnLoad, getOpenTimes } = require('../database/model.js');
+const { getBooksOnLoad, getOpenTime } = require('../database/model.js');
 
 let app = express();
 
@@ -28,25 +29,43 @@ app.get('/api/reserve/load/:id', (req, res) => {
 
 app.get('/api/reserve/query/:id/:date/:time', (req, res) => {
   var { id, date, time } = req.params;
-  console.log(
-    'Searching for open tables in restaurant ',
-    id,
-    ' at ',
-    time,
-    ' on ',
-    date
-  );
+  var testTimes = [];
+  var times = [];
 
-  let sendTimes = (err, times) => {
+  for (var i = 1; i <= 5; i++) {
+    var laterTime =;
+    var earlierTime = i *
+    testTimes.push(laterTime, earlierTime);
+  }
+
+  var queriesLeft = testTimes.length - 1;
+
+  let sendTimes = (err, time) => {
     if (err) {
       console.error(err);
       return;
     } else {
+      times.push(time);
       res.status(200).send(times);
     }
   };
 
-  getOpenTimes(id, date, time, sendTimes);
+  let nextQuery = (err, time) => {
+    if (err) {
+      console.error(err);
+      return;
+    } else if (queriesLeft) {
+      if (time[0]) {
+        times.push(time);
+      }
+      queriesLeft--;
+      getOpenTime(id, date, time, nextQuery);
+    } else {
+      getOpenTime(id, date, time, sendTimes);
+    }
+  };
+
+  getOpenTime(id, date, time, nextQuery);
 });
 
 app.listen(port, err => {

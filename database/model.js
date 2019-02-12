@@ -16,7 +16,8 @@ let getBooksOnLoad = (id, callback) => {
   );
 };
 
-let getOpenTimes = (id, date, time, callback) => {
+let getOpenTime = (id, date, time, callback) => {
+  console.log('searching for restaurant', id, 'at', time, 'on', date);
   connection.query(
     {
       sql: `SELECT * FROM reservations WHERE restaurant_id = ${id} AND date LIKE '%${date}%' AND time = '${time}'`,
@@ -33,4 +34,4 @@ let getOpenTimes = (id, date, time, callback) => {
 };
 
 module.exports.getBooksOnLoad = getBooksOnLoad;
-module.exports.getOpenTimes = getOpenTimes;
+module.exports.getOpenTime = getOpenTime;
