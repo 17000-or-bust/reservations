@@ -51,18 +51,35 @@ app.get('/api/reserve/query/:id/:date/:time', (req, res) => {
   }
 
   var numQueries = 0;
-  console.log('Searching for seats at these times:', testTimes);
 
-  let sendTimes = (err, time) => {
+  let sendTimes = (err, timeResult) => {
     if (err) {
       console.error(err);
       return;
     } else {
-      if (!time[0]) {
-        console.log(numQueries);
+      if (!timeResult[0]) {
         times.push(testTimes[numQueries]);
       }
-      res.status(200).send(times);
+      var timeDiffs = times.map((timeSlot, index) => {
+        var splitTimeSlot = timeSlot.split(':');
+        var time1 = moment()
+          .hour(splitTimeSlot[0])
+          .minute(splitTimeSlot[1]);
+        var splitTimeQuery = time.split(':');
+        var time2 = moment()
+          .hour(splitTimeQuery[0])
+          .minute(splitTimeQuery[1]);
+
+        return [Math.abs(time1.diff(time2, 'minute')), index];
+      });
+      timeDiffs.sort((a, b) => a[0] - b[0]);
+      var topFiveTimes = timeDiffs
+        .slice(0, 5)
+        .sort((a, b) => a[1] - b[1])
+        .map(tuple => {
+          return times[tuple[1]];
+        });
+      res.status(200).send(topFiveTimes);
     }
   };
 
