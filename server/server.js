@@ -29,16 +29,26 @@ app.get('/api/reserve/load/:id', (req, res) => {
 
 app.get('/api/reserve/query/:id/:date/:time', (req, res) => {
   var { id, date, time } = req.params;
-  var testTimes = [];
+
+  var max = 5;
+  var window = 30;
+  var splitTime = time.split(':');
+  var dummyTime = moment()
+    .hour(splitTime[0])
+    .minute(splitTime[1])
+    .subtract(max * window, 'minute');
+  var testTimes = [dummyTime.format('HH:mm')];
   var times = [];
 
-  for (var i = 1; i <= 5; i++) {
-    var laterTime =;
-    var earlierTime = i *
-    testTimes.push(laterTime, earlierTime);
+  // scan from 2.5 hours before queried time to 2.5 hours after
+  for (var i = 1; i <= max * 2; i++) {
+    var laterTime = dummyTime.add(window, 'minute').format('HH:mm');
+
+    testTimes.push(laterTime);
   }
 
   var queriesLeft = testTimes.length - 1;
+  console.log('Searching for seats at these times:', testTimes);
 
   let sendTimes = (err, time) => {
     if (err) {
@@ -59,9 +69,9 @@ app.get('/api/reserve/query/:id/:date/:time', (req, res) => {
         times.push(time);
       }
       queriesLeft--;
-      getOpenTime(id, date, time, nextQuery);
+      getOpenTime(id, date, testTimes[queriesLeft], nextQuery);
     } else {
-      getOpenTime(id, date, time, sendTimes);
+      getOpenTime(id, date, testTimes[queriesLeft], sendTimes);
     }
   };
 
