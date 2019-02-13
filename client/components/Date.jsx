@@ -33,36 +33,48 @@ let Date = props => {
   }
 
   return (
-    <div id="date">
-      <div id="header">
-        <div id="month">{monthYear}</div>
-      </div>
-      <div id="days">
-        {days.map(day => {
-          return (
-            <div className="day" key={day}>
-              {day}
-            </div>
-          );
-        })}
-      </div>
-      {dates.map(week => {
-        return (
-          <div className="row" key={week}>
-            {week.map(day => {
+    <div id="dateSection">
+      <div className="title">Date</div>
+      <div id="dateWrap">
+        <div id="date">
+          <div id="header">
+            <div id="month">{monthYear}</div>
+          </div>
+          <div id="days">
+            {days.map(day => {
               return (
-                <div
-                  className="box"
-                  key={day}
-                  onClick={e => props.change(e, day.format('YYYY-MM-DD'))}
-                >
-                  {day.format('D')}
+                <div className="day" key={day}>
+                  {day}
                 </div>
               );
             })}
           </div>
-        );
-      })}
+          {dates.map(week => {
+            return (
+              <div className="row" key={week}>
+                {week.map(day => {
+                  var classes = 'box';
+                  if (day.month() === month) {
+                    classes += ' thisMonth';
+                  }
+                  if (moment().isSameOrBefore(day, 'day')) {
+                    classes += ' future';
+                  }
+                  return (
+                    <div
+                      className={classes}
+                      key={day}
+                      onClick={e => props.change(e, day.format('YYYY-MM-DD'))}
+                    >
+                      {day.format('D')}
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };

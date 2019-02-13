@@ -59,7 +59,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="reservation">
         <h3>Make a reservation</h3>
 
         <Party change={this.changeParty} />
