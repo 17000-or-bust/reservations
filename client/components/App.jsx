@@ -40,7 +40,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="reservation">
         <h3>Make a reservation</h3>
 
         <div id="party">
@@ -64,8 +64,6 @@ class App extends React.Component {
         </div>
 
         <Booked rest={this.state.restaurantId} />
-
-        <div id="count">You're in luck! We still have x timeslots left</div>
       </div>
     );
   }

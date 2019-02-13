@@ -18,18 +18,21 @@ let Hour = props => {
     }
   }
   return (
-    <div id="hour">
-      <select
-        defaultValue={'7:00 PM'}
-        onChange={e => {
-          var hour = $('#hour select')[0].value;
-          props.change(e, hour);
-        }}
-      >
-        {times.map(time => {
-          return <option key={time}>{time}</option>;
-        })}
-      </select>
+    <div id="hourSection">
+      <div className="title">Time</div>
+      <div id="hour">
+        <select
+          defaultValue={'7:00 PM'}
+          onChange={e => {
+            var hour = $('#hour select')[0].value;
+            props.change(e, hour);
+          }}
+        >
+          {times.map(time => {
+            return <option key={time}>{time}</option>;
+          })}
+        </select>
+      </div>
     </div>
   );
 };
