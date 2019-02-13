@@ -42,6 +42,23 @@ class Reserve extends React.Component {
     });
   }
 
+  bookTime(time) {
+    var timeTwentyFour = moment(time, ['h:mm A']).format('HH:mm');
+    $.ajax({
+      url: `http://localhost:3003/api/reserve/book/${this.props.restId}/${
+        this.props.date
+      }/${timeTwentyFour}`,
+      method: 'POST',
+      data: { time: time },
+      success: res => {
+        this.props.toggleBtn();
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
+  }
+
   render() {
     var times = this.state.times;
     if (this.props.btn) {
@@ -71,7 +88,11 @@ class Reserve extends React.Component {
           <div id="reserve">
             {times.map(time => {
               return (
-                <div className="timeSlot" key={time}>
+                <div
+                  className="timeSlot"
+                  key={time}
+                  onClick={() => this.bookTime(time)}
+                >
                   {time}
                 </div>
               );

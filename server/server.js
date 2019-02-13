@@ -5,7 +5,11 @@ let moment = require('moment');
 
 const port = 3003;
 const { connection } = require('../database/index.js');
-const { getBooksOnLoad, getOpenTime } = require('../database/model.js');
+const {
+  getBooksOnLoad,
+  getOpenTime,
+  postTime
+} = require('../database/model.js');
 
 let app = express();
 
@@ -102,6 +106,20 @@ app.get('/api/reserve/query/:id/:date/:time', (req, res) => {
   };
 
   getOpenTime(id, date, testTimes[numQueries], nextQuery);
+});
+
+app.post('/api/reserve/book/:id/:date/:time', (req, res) => {
+  var { id, date, time } = req.params;
+  let loadResponse = (err, result) => {
+    if (err) {
+      console.error(err);
+      return;
+    } else {
+      res.status(201).send(result);
+    }
+  };
+
+  postTime(id, date, time, loadResponse);
 });
 
 app.listen(port, err => {

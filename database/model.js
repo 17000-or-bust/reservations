@@ -33,5 +33,22 @@ let getOpenTime = (id, date, time, callback) => {
   );
 };
 
+let postTime = (id, date, time, callback) => {
+  connection.query(
+    {
+      sql: `INSERT INTO reservations (restaurant_id, date, time) VALUES (${id}, '${date}', '${time}')`,
+      timeout: 2000
+    },
+    (err, res) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, res);
+      }
+    }
+  );
+};
+
 module.exports.getBooksOnLoad = getBooksOnLoad;
 module.exports.getOpenTime = getOpenTime;
+module.exports.postTime = postTime;
