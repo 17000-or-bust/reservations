@@ -4,6 +4,7 @@ import Date from './Date.jsx';
 import Hour from './Hour.jsx';
 import Booked from './Booked.jsx';
 import Reserve from './Reserve.jsx';
+import Party from './Party.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class App extends React.Component {
     };
 
     this.changeDate = this.changeDate.bind(this);
+    this.changeParty = this.changeParty.bind(this);
   }
 
   changeDate(event, date) {
@@ -42,6 +44,13 @@ class App extends React.Component {
     });
   }
 
+  changeParty(event, party) {
+    event.preventDefault();
+    this.setState({
+      partySize: party
+    });
+  }
+
   toggleButton() {
     this.setState({
       buttonShown: !this.state.buttonShown
@@ -53,14 +62,7 @@ class App extends React.Component {
       <div>
         <h3>Make a reservation</h3>
 
-        <div id="party">
-          Party Size
-          <select>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-          </select>
-        </div>
+        <Party change={this.changeParty} />
 
         <div id="datetime">
           <Date change={this.changeDate} />
