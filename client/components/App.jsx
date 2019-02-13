@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import Date from './Date.jsx';
 import Hour from './Hour.jsx';
 import Booked from './Booked.jsx';
 import Reserve from './Reserve.jsx';
@@ -14,6 +15,22 @@ class App extends React.Component {
       partySize: 2,
       buttonShown: true
     };
+
+    this.changeDate = this.changeDate.bind(this);
+  }
+
+  changeDate(event, date) {
+    event.preventDefault();
+    if (moment().isSameOrBefore(date, 'day')) {
+      this.setState(
+        {
+          date: date
+        },
+        () => {
+          console.log('save the date!', this.state.date);
+        }
+      );
+    }
   }
 
   changeTime(event, time) {
@@ -46,13 +63,7 @@ class App extends React.Component {
         </div>
 
         <div id="datetime">
-          <div id="date">
-            <select>
-              <option>Monday</option>
-              <option>Tuesday</option>
-              <option>Wednesday</option>
-            </select>
-          </div>
+          <Date change={this.changeDate} />
           <div id="time">
             <Hour hour={this.state.time} change={this.changeTime.bind(this)} />
           </div>
