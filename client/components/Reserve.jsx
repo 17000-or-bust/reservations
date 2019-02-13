@@ -61,6 +61,8 @@ class Reserve extends React.Component {
 
   render() {
     var times = this.state.times;
+    var timeTwentyFour = moment(this.props.time, ['HH:mm']).format('h:mm A');
+
     if (this.props.btn) {
       return (
         <div id="reserve">
@@ -104,7 +106,7 @@ class Reserve extends React.Component {
         return (
           <div id="reserve">
             At the moment, there's no online availability within 2.5 hours of{' '}
-            {this.props.time}. Have another time in mind?
+            {timeTwentyFour}. Have another time in mind?
           </div>
         );
       }
