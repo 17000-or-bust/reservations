@@ -50,9 +50,16 @@ let Date = props => {
         return (
           <div className="row" key={week}>
             {week.map(day => {
+              var classes = 'box';
+              if (day.month() === month) {
+                classes += ' thisMonth';
+              }
+              if (moment().isSameOrBefore(day, 'day')) {
+                classes += ' future';
+              }
               return (
                 <div
-                  className="box"
+                  className={classes}
                   key={day}
                   onClick={e => props.change(e, day.format('YYYY-MM-DD'))}
                 >
