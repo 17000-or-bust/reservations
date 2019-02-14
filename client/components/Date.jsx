@@ -38,7 +38,13 @@ let Date = props => {
       <div id="dateWrap">
         <div id="date">
           <div id="header">
+            <div className="sideArrow">
+              <i className="fa fa-angle-left" />
+            </div>
             <div id="month">{monthYear}</div>
+            <div className="sideArrow">
+              <i className="fas fa-angle-right" />
+            </div>
           </div>
           <div id="days">
             {days.map(day => {

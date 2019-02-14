@@ -19,10 +19,22 @@
 #header {
   height: 34px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sideArrow {
+  border: 1px solid #d8d9db;
+  border-radius: 50%;
+  width: 26px;
+  height: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #month {
-  margin: auto;
+  margin: auto 0;
   padding-top: 7px;
   font-weight: bold;
   font-size: 90%;
