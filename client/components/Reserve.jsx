@@ -66,7 +66,9 @@ class Reserve extends React.Component {
     if (this.props.btn) {
       return (
         <div id="reserve">
-          <button onClick={e => this.findTimes(e)}>Find a Table</button>
+          <button id="find" onClick={e => this.findTimes(e)}>
+            Find a Table
+          </button>
         </div>
       );
     } else {
