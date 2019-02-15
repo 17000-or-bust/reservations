@@ -42,6 +42,17 @@
   cursor: pointer;
 }
 
+.fadeBtn:hover {
+  border: 1px solid #d8d9db;
+  width: 30px;
+  height: 30px;
+  cursor: default;
+}
+
+.fadeArrow {
+  color: #d8d9db;
+}
+
 #month {
   margin: auto 0;
   padding-top: 7px;
