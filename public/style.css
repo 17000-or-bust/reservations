@@ -100,7 +100,8 @@
   color: black;
 }
 
-.future:hover {
+.future:hover,
+.defaultDate {
   outline-style: solid;
   outline-color: #da3743;
   cursor: pointer;

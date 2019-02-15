@@ -110,6 +110,9 @@ class Date extends React.Component {
                     if (moment().isSameOrBefore(day, 'day')) {
                       classes += ' future';
                     }
+                    if (day.format('YYYY-MM-DD') === this.props.date) {
+                      classes += ' defaultDate';
+                    }
                     return (
                       <div
                         className={classes}
