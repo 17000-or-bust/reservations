@@ -10,4 +10,9 @@ describe('Reserve component', () => {
     const wrapper = shallow(<Reserve />);
     expect(wrapper.exists()).toBe(true);
   });
+
+  test('prompts user with button', () => {
+    const wrapper = shallow(<Reserve btn={'button'} />);
+    expect(wrapper.find('#reserve').text()).toBe('Find a Table');
+  });
 });

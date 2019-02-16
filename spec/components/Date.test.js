@@ -10,4 +10,14 @@ describe('Date component', () => {
     const wrapper = shallow(<Date />);
     expect(wrapper.exists()).toBe(true);
   });
+
+  const changeDate = jest.fn();
+  test('changes date', () => {
+    const wrapper = shallow(<Date change={changeDate} />);
+    wrapper
+      .find('.box')
+      .at(0)
+      .simulate('click');
+    expect(changeDate).toHaveBeenCalled();
+  });
 });
