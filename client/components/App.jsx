@@ -11,7 +11,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       restaurantId: Math.round(Math.random() * 100) || 1,
-      date: '2019-02-14',
+      date: moment().format('YYYY-MM-DD'),
       time: '19:00',
       partySize: 2,
       buttonShown: true
@@ -65,7 +65,7 @@ class App extends React.Component {
         <Party change={this.changeParty} />
 
         <div id="datetime">
-          <Date change={this.changeDate} />
+          <Date change={this.changeDate} date={this.state.date} />
           <div id="time">
             <Hour hour={this.state.time} change={this.changeTime.bind(this)} />
           </div>

@@ -17,6 +17,17 @@
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+#dateSection {
+  position: relative;
+  display: inline-block;
+}
+
+#dateWrap {
+  display: none;
+  position: fixed;
+  z-index: 99;
+}
+
 h3 {
   padding: 0px;
   margin: 0px;
@@ -29,15 +40,47 @@ h3 {
   border-collapse: collapse;
   background-color: #f1f2f4;
   display: inline-block;
+  padding: 16px;
+  border: 1px solid #d8d9db;
 }
 
 #header {
   height: 34px;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sideArrow {
+  border: 1px solid #d8d9db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sideArrow:hover {
+  border: 2px solid #da3743;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+}
+
+.fadeBtn:hover {
+  border: 1px solid #d8d9db;
+  width: 30px;
+  height: 30px;
+  cursor: default;
+}
+
+.fadeArrow {
+  color: #d8d9db;
 }
 
 #month {
-  margin: auto;
+  margin: auto 0;
   padding-top: 7px;
   font-weight: bold;
   font-size: 90%;
@@ -54,7 +97,7 @@ h3 {
 
 .day,
 .box {
-  height: 31px;
+  height: 32px;
   display: table-cell;
   table-layout: fixed;
   text-align: center;
@@ -83,7 +126,8 @@ h3 {
   color: black;
 }
 
-.future:hover {
+.future:hover,
+.defaultDate {
   outline-style: solid;
   outline-color: #da3743;
   cursor: pointer;
