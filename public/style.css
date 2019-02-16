@@ -10,6 +10,17 @@
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+#dateSection {
+  position: relative;
+  display: inline-block;
+}
+
+#dateWrap {
+  display: none;
+  position: fixed;
+  z-index: 99;
+}
+
 #date {
   border-collapse: collapse;
   background-color: #f1f2f4;

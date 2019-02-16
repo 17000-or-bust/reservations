@@ -31,6 +31,15 @@ class Date extends React.Component {
     }
   }
 
+  toggleCalendar(event) {
+    event.preventDefault();
+    if (document.getElementById('dateWrap').style.display !== 'flex') {
+      document.getElementById('dateWrap').style.display = 'flex';
+    } else {
+      document.getElementById('dateWrap').style.display = 'none';
+    }
+  }
+
   render() {
     // Determine month/year for calendar header
     var month = moment()
@@ -70,7 +79,13 @@ class Date extends React.Component {
 
     return (
       <div id="dateSection">
-        <div className="title">Date</div>
+        <div
+          id="dateSelected"
+          className="title"
+          onClick={e => this.toggleCalendar(e)}
+        >
+          Date
+        </div>
         <div id="dateWrap">
           <div id="date">
             <div id="header">
