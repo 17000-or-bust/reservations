@@ -10,7 +10,7 @@
   "scripts": {
     "mysql-seed": "mysql -u root < database/schema.sql",
     "pack": "webpack --watch",
-    "test": "jest --verbose"
+    "test": "jest --verbose --coverage"
   },
   "dependencies": {
     "body-parser": "^1.18.3",

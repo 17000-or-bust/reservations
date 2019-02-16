@@ -10,4 +10,10 @@ describe('Booked component', () => {
     const wrapper = shallow(<Booked />);
     expect(wrapper.exists()).toBe(true);
   });
+
+  test('displays number of bookings today', () => {
+    const wrapper = shallow(<Booked />);
+    wrapper.setState({ timesBooked: 100 });
+    expect(wrapper.find('#bookedText').text()).toBe('Booked 100 times today');
+  });
 });
