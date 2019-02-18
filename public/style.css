@@ -2,55 +2,6 @@
   display: inline-block;
 }
 
-#reservation {
-  width: 300px;
-  padding: 0px 15px;
-  padding-bottom: 15px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  align-content: center;
-  box-shadow: 1px 2px 8px rgba(153, 153, 153, 0.4);
-  border-radius: 1%;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-#dateSection {
-  position: relative;
-  display: inline-block;
-}
-
-#dateWrap {
-  display: none;
-  position: fixed;
-  z-index: 99;
-}
-
-h3 {
-  padding: 0px;
-  margin: 0px;
-  padding: 13px 0px;
-  text-align: center;
-  border-bottom: 1px solid #d8d9db;
-}
-
-#date {
-  border-collapse: collapse;
-  background-color: #f1f2f4;
-  display: inline-block;
-  padding: 16px;
-  border: 1px solid #d8d9db;
-}
-
-#header {
-  height: 34px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .sideArrow {
   border: 1px solid #d8d9db;
   border-radius: 50%;
@@ -75,42 +26,12 @@ h3 {
   cursor: default;
 }
 
-.fadeArrow {
-  color: #d8d9db;
-}
-
-#month {
-  margin: auto 0;
-  padding-top: 7px;
-  font-weight: bold;
-  font-size: 90%;
-}
-
-#days {
-  display: table-row;
-}
-
-.row {
-  height: 33px;
-  display: table-row;
-}
-
-.day,
-.box {
+.calendarBox {
   height: 32px;
   display: table-cell;
   table-layout: fixed;
   text-align: center;
   vertical-align: middle;
-}
-
-.day {
-  width: 34px;
-  padding-left: 0.5px;
-  font-size: 80%;
-}
-
-.box {
   border: 1px solid #d8d9db;
   color: #d8d9db;
   width: 34px;
