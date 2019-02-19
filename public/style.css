@@ -2,6 +2,54 @@
   display: inline-block;
 }
 
+#hourSection {
+  position: relative;
+  float: right;
+}
+
+.title {
+  width: 140px;
+  height: 19px;
+  font-size: 85%;
+  font-weight: 400;
+}
+
+.currentTime {
+  border: 0px;
+  background-color: white;
+  width: 140px;
+  height: 34px;
+  border-bottom: 1px solid #d8d9db;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 85%;
+}
+
+.currentTime:hover {
+  cursor: pointer;
+  box-shadow: 0 1px 0 #da3743;
+}
+
+#hour {
+  display: none;
+  position: absolute;
+  z-index: 99;
+  width: 140px;
+  height: 420px;
+  overflow: scroll;
+  background-color: white;
+  font-size: 88%;
+  border: 1px solid #d8d9db;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.timeSlot:hover {
+  background-color: blue;
+  color: white;
+}
+
 .sideArrow {
   border: 1px solid #d8d9db;
   border-radius: 50%;
