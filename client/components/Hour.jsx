@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import styled from 'styled-components';
 
 class Hour extends React.Component {
   constructor(props) {
@@ -32,33 +33,79 @@ class Hour extends React.Component {
     }
     let currentHour = moment(this.props.hour, ['HH:mm']).format('h:mm A');
     return (
-      <div id="hourSection">
-        <div className="title">Time</div>
-        <div className="currentTime" onClick={e => this.toggleHoursList(e)}>
-          <div className="currentTimeText">{currentHour}</div>
+      <HourSection>
+        <Title>Time</Title>
+        <CurrentTime onClick={e => this.toggleHoursList(e)}>
+          <div>{currentHour}</div>
           <i className="fas fa-angle-down" />
-        </div>
-        <div id="hour">
-          <div className="dropDown">
-            {times.map(time => {
-              return (
-                <div
-                  className="timeSlot"
-                  key={time}
-                  onClick={e => {
-                    this.props.change(e, time);
-                    this.toggleHoursList(e);
-                  }}
-                >
-                  {time}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </div>
+        </CurrentTime>
+        <DropDown id="hour">
+          {times.map(time => {
+            return (
+              <TimeSlot
+                key={time}
+                onClick={e => {
+                  this.props.change(e, time);
+                  this.toggleHoursList(e);
+                }}
+              >
+                {time}
+              </TimeSlot>
+            );
+          })}
+        </DropDown>
+      </HourSection>
     );
   }
 }
 
 export default Hour;
+
+const HourSection = styled.div`
+  position: relative;
+  float: right;
+`;
+
+const Title = styled.div`
+  width: 140px;
+  height: 19px;
+  font-size: 85%;
+  font-weight: 400;
+`;
+
+const CurrentTime = styled.div`
+  border: 0px;
+  background-color: white;
+  width: 140px;
+  height: 34px;
+  border-bottom: 1px solid #d8d9db;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 85%;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 1px 0 #da3743;
+  }
+`;
+
+const DropDown = styled.div`
+  display: none;
+  position: absolute;
+  z-index: 99;
+  width: 140px;
+  height: 420px;
+  overflow: scroll;
+  background-color: white;
+  font-size: 88%;
+  border: 1px solid #d8d9db;
+  flex-direction: column;
+  justify-content: space-around;
+`;
+
+const TimeSlot = styled.div`
+  &:hover {
+    background-color: blue;
+    color: white;
+  }
+`;
