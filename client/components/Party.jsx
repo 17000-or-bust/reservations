@@ -17,7 +17,7 @@ let Party = props => {
           }
         }}
       >
-        <div>For {props.size}</div>
+        <CurrentPartyText>For {props.size}</CurrentPartyText>
         <i className="fas fa-angle-down" />
       </CurrentParty>
       <DropDown id="partySizeDrop">
@@ -45,10 +45,10 @@ const PartySection = styled.div`
 `;
 
 const Title = styled.div`
-  width: 140px;
+  width: 300px;
   height: 19px;
   font-size: 85%;
-  font-weight: 400;
+  font-weight: 600;
 `;
 
 const CurrentParty = styled.div`
@@ -60,11 +60,14 @@ const CurrentParty = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 85%;
   &:hover {
     cursor: pointer;
     box-shadow: 0 1px 0 #da3743;
   }
+`;
+
+const CurrentPartyText = styled.div`
+  font-size: 100%;
 `;
 
 const DropDown = styled.div`
@@ -80,6 +83,7 @@ const DropDown = styled.div`
 `;
 
 const Size = styled.div`
+  height: 19px;
   &:hover {
     background-color: blue;
     color: white;
