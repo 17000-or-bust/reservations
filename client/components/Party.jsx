@@ -1,21 +1,91 @@
 import React from 'react';
+import styled from 'styled-components';
 
 let Party = props => {
   return (
-    <div id="party">
-      <select
-        defaultValue="2"
-        onChange={event => {
-          var partySize = event.target.value;
-          props.change(event, partySize);
+    <PartySection>
+      <Title>Party Size</Title>
+      <CurrentParty
+        onClick={e => {
+          e.preventDefault();
+          if (
+            document.getElementById('partySizeDrop').style.display !== 'flex'
+          ) {
+            document.getElementById('partySizeDrop').style.display = 'flex';
+          } else {
+            document.getElementById('partySizeDrop').style.display = 'none';
+          }
         }}
       >
+        <CurrentPartyText>For {props.size}</CurrentPartyText>
+        <i className="fas fa-angle-down" />
+      </CurrentParty>
+      <DropDown id="partySizeDrop">
         {Array.from(Array(20).keys()).map(size => (
-          <option key={size}>{size + 1}</option>
+          <Size
+            key={size}
+            onClick={event => {
+              props.change(event, size + 1);
+              document.getElementById('partySizeDrop').style.display = 'none';
+            }}
+          >
+            {size + 1}
+          </Size>
         ))}
-      </select>
-    </div>
+      </DropDown>
+    </PartySection>
   );
 };
 
 export default Party;
+
+const PartySection = styled.div`
+  position: relative;
+  float: right;
+`;
+
+const Title = styled.div`
+  width: 300px;
+  height: 19px;
+  font-size: 85%;
+  font-weight: 600;
+`;
+
+const CurrentParty = styled.div`
+  border: 0px;
+  background-color: white;
+  width: 300px;
+  height: 34px;
+  border-bottom: 1px solid #d8d9db;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 1px 0 #da3743;
+  }
+`;
+
+const CurrentPartyText = styled.div`
+  font-size: 100%;
+`;
+
+const DropDown = styled.div`
+  display: none;
+  position: absolute;
+  z-index: 99;
+  width: 300px;
+  background-color: white;
+  font-size: 88%;
+  border: 1px solid #d8d9db;
+  flex-direction: column;
+  justify-content: space-around;
+`;
+
+const Size = styled.div`
+  height: 19px;
+  &:hover {
+    background-color: blue;
+    color: white;
+  }
+`;
