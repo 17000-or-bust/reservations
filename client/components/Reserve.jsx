@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 import moment from 'moment';
+import styled from 'styled-components';
 
 class Reserve extends React.Component {
   constructor(props) {
@@ -65,19 +66,19 @@ class Reserve extends React.Component {
 
     if (this.props.btn) {
       return (
-        <div id="reserve">
-          <button id="find" onClick={e => this.findTimes(e)}>
-            Find a Table
-          </button>
-        </div>
+        <ReserveDiv>
+          <FindWrap>
+            <Find onClick={e => this.findTimes(e)}>Find a Table</Find>
+          </FindWrap>
+        </ReserveDiv>
       );
     } else {
       if (this.state.error) {
         return (
-          <div id="reserve">
+          <ReserveDiv>
             Unfortunately, this restaurant can't accept that reservation. Have
             another time in mind?
-          </div>
+          </ReserveDiv>
         );
       } else if (times.length > 0) {
         var count =
@@ -89,7 +90,7 @@ class Reserve extends React.Component {
             ''
           );
         return (
-          <div id="reserve">
+          <ReserveDiv>
             {times.map(time => {
               return (
                 <div
@@ -102,14 +103,14 @@ class Reserve extends React.Component {
               );
             })}
             <div id="count">{count}</div>
-          </div>
+          </ReserveDiv>
         );
       } else {
         return (
-          <div id="reserve">
+          <ReserveDiv>
             At the moment, there's no online availability within 2.5 hours of{' '}
             {timeTwentyFour}. Have another time in mind?
-          </div>
+          </ReserveDiv>
         );
       }
     }
@@ -117,3 +118,28 @@ class Reserve extends React.Component {
 }
 
 export default Reserve;
+
+const ReserveDiv = styled.div`
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+`;
+
+const Find = styled.button`
+  background-color: #da3743;
+  color: white;
+  font-size: 105%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  width: 300px;
+  height: 47px;
+  border: 0px;
+  border-radius: 2%;
+`;
+
+const FindWrap = styled.div`
+  ${Find}: hover {
+    cursor: pointer;
+    background-color: #e45962;
+  }
+`;
