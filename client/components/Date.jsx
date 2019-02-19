@@ -79,6 +79,8 @@ class Date extends React.Component {
     }
 
     // Format default text field for calendar drop down
+    var chosenDate = moment(this.props.date, 'YYYY-MM-DD');
+    var dateText = chosenDate.format('ddd') + ', ' + chosenDate.format('M/DD');
 
     const leftArrowStyle = {
       color: '#d8d9db'
@@ -88,7 +90,8 @@ class Date extends React.Component {
       <DateSection>
         <Title onClick={e => this.toggleCalendar(e)}>Date</Title>
         <CurrentDate onClick={e => this.toggleCalendar(e)}>
-          {this.props.date}
+          <div>{dateText}</div>
+          <i className="fas fa-angle-down" />
         </CurrentDate>
         <DateWrap id="dateWrap">
           <DateDrop>
