@@ -78,19 +78,18 @@ class Date extends React.Component {
       dates.push(oneWeek);
     }
 
+    // Format default text field for calendar drop down
+
     const leftArrowStyle = {
       color: '#d8d9db'
     };
 
     return (
       <DateSection>
-        <div
-          id="dateSelected"
-          className="title"
-          onClick={e => this.toggleCalendar(e)}
-        >
-          Date
-        </div>
+        <Title onClick={e => this.toggleCalendar(e)}>Date</Title>
+        <CurrentDate onClick={e => this.toggleCalendar(e)}>
+          {this.props.date}
+        </CurrentDate>
         <DateWrap id="dateWrap">
           <DateDrop>
             <Header>
@@ -121,23 +120,22 @@ class Date extends React.Component {
                 <Row key={week}>
                   {week.map(day => {
                     var classes = 'calendarBox';
+                    var onClick = () => {};
                     if (day.month() === month) {
                       classes += ' thisMonth';
                     }
                     if (moment().isSameOrBefore(day, 'day')) {
                       classes += ' future';
+                      onClick = e => {
+                        this.props.change(e, day.format('YYYY-MM-DD'));
+                        this.toggleCalendar(e);
+                      };
                     }
                     if (day.format('YYYY-MM-DD') === this.props.date) {
                       classes += ' defaultDate';
                     }
                     return (
-                      <div
-                        className={classes}
-                        key={day}
-                        onClick={e =>
-                          this.props.change(e, day.format('YYYY-MM-DD'))
-                        }
-                      >
+                      <div className={classes} key={day} onClick={onClick}>
                         {day.format('D')}
                       </div>
                     );
@@ -156,7 +154,29 @@ export default Date;
 
 const DateSection = styled.div`
   position: relative;
-  display: inline-block;
+  float: left;
+`;
+
+const Title = styled.div`
+  width: 140px;
+  height: 19px;
+  font-size: 85%;
+  font-weight: 600;
+`;
+
+const CurrentDate = styled.div`
+  border: 0px;
+  background-color: white;
+  width: 140px;
+  height: 34px;
+  border-bottom: 1px solid #d8d9db;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 1px 0 #da3743;
+  }
 `;
 
 const DateWrap = styled.div`
