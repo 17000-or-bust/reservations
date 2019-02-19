@@ -93,13 +93,9 @@ class Reserve extends React.Component {
           <ReserveDiv>
             {times.map(time => {
               return (
-                <div
-                  className="timeSlot"
-                  key={time}
-                  onClick={() => this.bookTime(time)}
-                >
+                <TimeSlot key={time} onClick={() => this.bookTime(time)}>
                   {time}
-                </div>
+                </TimeSlot>
               );
             })}
             <div id="count">{count}</div>
@@ -122,7 +118,8 @@ export default Reserve;
 const ReserveDiv = styled.div`
   margin-top: 16px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 `;
 
 const Find = styled.button`
@@ -139,6 +136,22 @@ const Find = styled.button`
 
 const FindWrap = styled.div`
   ${Find}: hover {
+    cursor: pointer;
+    background-color: #e45962;
+  }
+`;
+
+const TimeSlot = styled.div`
+  color: white;
+  background-color: #da3743;
+  border-radius: 5%;
+  width: 80px;
+  height: 40px;
+  margin: 8px;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  &:hover {
     cursor: pointer;
     background-color: #e45962;
   }

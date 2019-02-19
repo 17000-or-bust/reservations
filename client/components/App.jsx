@@ -65,12 +65,12 @@ class App extends React.Component {
 
         <Party size={this.state.partySize} change={this.changeParty} />
 
-        <div id="datetime">
+        <DateTime>
           <Date change={this.changeDate} date={this.state.date} />
           <div id="time">
             <Hour hour={this.state.time} change={this.changeTime.bind(this)} />
           </div>
-        </div>
+        </DateTime>
 
         <Reserve
           btn={this.state.buttonShown}
@@ -106,6 +106,11 @@ const Title = styled.h3`
   padding: 0px;
   margin: 0px;
   padding: 13px 0px;
+  margin-bottom: 16px;
   text-align: center;
   border-bottom: 1px solid #d8d9db;
+`;
+
+const DateTime = styled.div`
+  height: 65px;
 `;

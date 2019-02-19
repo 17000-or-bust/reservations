@@ -70,7 +70,7 @@ const Title = styled.div`
   width: 140px;
   height: 19px;
   font-size: 85%;
-  font-weight: 400;
+  font-weight: 600;
 `;
 
 const CurrentTime = styled.div`
