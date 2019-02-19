@@ -62,7 +62,7 @@ class App extends React.Component {
       <div id="reservation">
         <h3>Make a reservation</h3>
 
-        <Party change={this.changeParty} />
+        <Party size={this.state.partySize} change={this.changeParty} />
 
         <div id="datetime">
           <Date change={this.changeDate} date={this.state.date} />
