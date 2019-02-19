@@ -131,7 +131,7 @@ const Find = styled.button`
   font-size: 105%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  width: 288px;
+  width: 300px;
   height: 47px;
   border: 0px;
   border-radius: 2%;
