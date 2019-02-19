@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import styled from 'styled-components';
 import Date from './Date.jsx';
 import Hour from './Hour.jsx';
 import Booked from './Booked.jsx';
@@ -59,8 +60,8 @@ class App extends React.Component {
 
   render() {
     return (
-      <div id="reservation">
-        <h3>Make a reservation</h3>
+      <Reservation>
+        <Title>Make a reservation</Title>
 
         <Party size={this.state.partySize} change={this.changeParty} />
 
@@ -80,9 +81,32 @@ class App extends React.Component {
         />
 
         <Booked rest={this.state.restaurantId} />
-      </div>
+      </Reservation>
     );
   }
 }
 
 export default App;
+
+const Reservation = styled.div`
+  width: 300px;
+  padding: 0px 15px;
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-content: center;
+  box-shadow: 1px 2px 8px rgba(153, 153, 153, 0.4);
+  border-radius: 1%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+`;
+
+const Title = styled.h3`
+  padding: 0px;
+  margin: 0px;
+  padding: 13px 0px;
+  text-align: center;
+  border-bottom: 1px solid #d8d9db;
+`;

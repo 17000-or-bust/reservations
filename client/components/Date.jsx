@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import styled from 'styled-components';
 
 class Date extends React.Component {
   constructor(props) {
@@ -21,10 +22,10 @@ class Date extends React.Component {
           // toggle styling on left arrow if is current month
           if (this.state.monthDiff) {
             arrow.classList.remove('fadeBtn');
-            arrow.children[0].classList.remove('fadeArrow');
+            arrow.children[0].style.color = 'black';
           } else {
             arrow.classList.add('fadeBtn');
-            arrow.children[0].classList.add('fadeArrow');
+            arrow.children[0].style.color = '#d8d9db';
           }
         }
       );
@@ -77,8 +78,12 @@ class Date extends React.Component {
       dates.push(oneWeek);
     }
 
+    const leftArrowStyle = {
+      color: '#d8d9db'
+    };
+
     return (
-      <div id="dateSection">
+      <DateSection>
         <div
           id="dateSelected"
           className="title"
@@ -86,39 +91,36 @@ class Date extends React.Component {
         >
           Date
         </div>
-        <div id="dateWrap">
-          <div id="date">
-            <div id="header">
-              <div
-                id="left"
-                className="sideArrow fadeBtn"
-                onClick={e => this.changeMonth(e, -1)}
-              >
-                <i id="leftArrow" className="fa fa-angle-left fadeArrow" />
-              </div>
-              <div id="month">{monthYear}</div>
-              <div
-                id="right"
-                className="sideArrow"
-                onClick={e => this.changeMonth(e, 1)}
-              >
-                <i className="fas fa-angle-right" />
-              </div>
-            </div>
-            <div id="days">
+        <DateWrap id="dateWrap">
+          <DateDrop>
+            <Header>
+              <SideArrowWrap>
+                <div
+                  id="left"
+                  className="sideArrow fadeBtn"
+                  style={leftArrowStyle}
+                  onClick={e => this.changeMonth(e, -1)}
+                >
+                  <i className="fa fa-angle-left fadeArrow" />
+                </div>
+              </SideArrowWrap>
+              <Month>{monthYear}</Month>
+              <SideArrowWrap>
+                <SideArrow onClick={e => this.changeMonth(e, 1)}>
+                  <i className="fas fa-angle-right" />
+                </SideArrow>
+              </SideArrowWrap>
+            </Header>
+            <Days>
               {days.map(day => {
-                return (
-                  <div className="day" key={day}>
-                    {day}
-                  </div>
-                );
+                return <Day key={day}>{day}</Day>;
               })}
-            </div>
+            </Days>
             {dates.map(week => {
               return (
-                <div className="row" key={week}>
+                <Row key={week}>
                   {week.map(day => {
-                    var classes = 'box';
+                    var classes = 'calendarBox';
                     if (day.month() === month) {
                       classes += ' thisMonth';
                     }
@@ -140,14 +142,86 @@ class Date extends React.Component {
                       </div>
                     );
                   })}
-                </div>
+                </Row>
               );
             })}
-          </div>
-        </div>
-      </div>
+          </DateDrop>
+        </DateWrap>
+      </DateSection>
     );
   }
 }
 
 export default Date;
+
+const DateSection = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+const DateWrap = styled.div`
+  display: none;
+  position: fixed;
+  z-index: 99;
+`;
+
+const DateDrop = styled.div`
+  border-collapse: collapse;
+  background-color: #f1f2f4;
+  display: inline-block;
+  padding: 16px;
+  border: 1px solid #d8d9db;
+`;
+
+const Header = styled.div`
+  height: 34px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const SideArrow = styled.div`
+  border: 1px solid #d8d9db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const SideArrowWrap = styled.div`
+  ${SideArrow}: hover {
+    border: 2px solid #da3743;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+  }
+`;
+
+const Month = styled.div`
+  margin: auto 0;
+  padding-top: 7px;
+  font-weight: bold;
+  font-size: 90%;
+`;
+
+const Days = styled.div`
+  display: table-row;
+`;
+
+const Row = styled.div`
+  height: 33px;
+  display: table-row;
+`;
+
+const Day = styled.div`
+  height: 32px;
+  display: table-cell;
+  table-layout: fixed;
+  text-align: center;
+  vertical-align: middle;
+  width: 34px;
+  padding-left: 0.5px;
+  font-size: 80%;
+`;
