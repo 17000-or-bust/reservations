@@ -1,5 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+// import React from 'react';
+// import ReactDOM from 'react-dom';
 import App from './components/App.jsx';
 
-ReactDOM.render(<App />, document.getElementById('app'));
+// Export App to window with unique name to render alongside other components in proxy server
+// ReactDOM.render(<App />, document.getElementById('app'));
+
+window.reservations = App;
