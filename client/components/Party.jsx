@@ -42,6 +42,7 @@ export default Party;
 const PartySection = styled.div`
   position: relative;
   float: right;
+  margin-bottom: 16px;
 `;
 
 const Title = styled.div`
