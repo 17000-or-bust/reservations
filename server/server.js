@@ -2,6 +2,7 @@ let express = require('express');
 let morgan = require('morgan');
 let bodyParser = require('body-parser');
 let moment = require('moment');
+let cors = require('cors');
 
 const port = 3003;
 const { connection } = require('../database/index.js');
@@ -17,6 +18,7 @@ app.use(express.static(__dirname + '/../public'));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 app.get('/api/reserve/load/:id', (req, res) => {
   var { id } = req.params;
