@@ -1,6 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
-import styled from 'styled-components';
+// import styled from 'styled-components';
+const { styled } = window;
 
 class Booked extends React.Component {
   constructor(props) {
