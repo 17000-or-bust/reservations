@@ -1,11 +1,7 @@
 let mysql = require('mysql');
+let config = require('./config.js');
 
-let connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'reservations'
-});
+let connection = mysql.createConnection(config);
 
 connection.connect(err => {
   if (err) {
