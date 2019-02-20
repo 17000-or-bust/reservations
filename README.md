@@ -28,9 +28,10 @@ To get started:
 npm run mysql-seed
 ```
 
+- Follow instructions in database/config.example.js to create a new config.js file for the mysql database connection
 - In a static index.html page, include the following:
-  - Script tag which invokes ReactDom.render on 'Reservations'
-  - Script tag with source http://localhost:3003/public/bundle.js
+  - Script tag which invokes ReactDOM.render on 'Reservations'
+  - Script tag with source http://localhost:3003/bundle.js
   - Link to stylesheet with contents copied from stylesheet in this directory's public folder
   - These links:
 
