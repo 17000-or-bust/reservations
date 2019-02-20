@@ -10,6 +10,7 @@
   "scripts": {
     "mysql-seed": "mysql -u root < database/schema.sql",
     "pack": "webpack --watch",
+    "server": "nodemon server/server.js",
     "test": "jest --verbose --coverage"
   },
   "dependencies": {

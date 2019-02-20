@@ -54,9 +54,10 @@ npm install
 
 ### Dev Environment
 
-Run webpack to transpile to server's entrypoint:
+Run server in nodemon to continuously watch for changes. Run webpack to continuously transpile to the server's entrypoint:
 
 ```sh
+npm run server
 npm run pack
 ```
 
