@@ -5,4 +5,4 @@ import App from './components/App.jsx';
 // Export App to window with unique name to render alongside other components in proxy server
 // ReactDOM.render(<App />, document.getElementById('app'));
 
-window.reservations = App;
+window.Reservations = App;
