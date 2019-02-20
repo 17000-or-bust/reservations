@@ -29,8 +29,23 @@ npm run mysql-seed
 ```
 
 - In a static index.html page, include the following:
-  - A script tag which invokes ReactDom.render on 'reservations'
-  - A script tag with source http://localhost:3003/public/bundle.js
+  - Script tag which invokes ReactDom.render on 'Reservations'
+  - Script tag with source http://localhost:3003/public/bundle.js
+  - Link to stylesheet with contents copied from stylesheet in this directory's public folder
+  - These links:
+
+```sh
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+  integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+  crossorigin="anonymous"
+/>
+<link
+  href="https://fonts.googleapis.com/css?family=Mukta+Mahee"
+  rel="stylesheet"
+/>
+```
 
 ## Requirements
 
