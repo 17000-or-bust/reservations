@@ -1,11 +1,12 @@
 import React from 'react';
 import moment from 'moment';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import Date from './Date.jsx';
 import Hour from './Hour.jsx';
 import Booked from './Booked.jsx';
 import Reserve from './Reserve.jsx';
 import Party from './Party.jsx';
+const { styled } = window;
 
 class App extends React.Component {
   constructor(props) {

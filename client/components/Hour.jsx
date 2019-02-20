@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import styled from 'styled-components';
+// import styled from 'styled-components';
+const { styled } = window;
 
 class Hour extends React.Component {
   constructor(props) {

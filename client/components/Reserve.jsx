@@ -1,7 +1,8 @@
 import React from 'react';
 import $ from 'jquery';
 import moment from 'moment';
-import styled from 'styled-components';
+// import styled from 'styled-components';
+const { styled } = window;
 
 class Reserve extends React.Component {
   constructor(props) {
