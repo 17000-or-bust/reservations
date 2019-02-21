@@ -6,9 +6,9 @@ WORKDIR /src/app
 
 COPY . /src/app
 
-RUN npm install -g nodemon
 RUN npm install
+RUN npm run pack
 
 EXPOSE 3003
 
-CMD ["sh","-c","npm run server && npm run pack"]
+CMD ["npm","run","server"]
