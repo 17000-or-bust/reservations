@@ -11,4 +11,4 @@ RUN npm run pack
 
 EXPOSE 3003
 
-CMD ["npm","run","server"]
+CMD ["sh","-c","npm run server && mysql -u root -h \"172.17.0.2\" -P 3306;"]
