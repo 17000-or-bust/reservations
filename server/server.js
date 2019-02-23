@@ -14,6 +14,12 @@ const {
 
 let app = express();
 
+app.get('*.js', function(req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
+
 app.use(express.static(__dirname + '/../public'));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
