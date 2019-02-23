@@ -124,6 +124,8 @@ app.post('/api/reserve/book/:id/:date/:time', (req, res) => {
   postTime(id, date, time, loadResponse);
 });
 
+app.use('/:id', express.static(__dirname + '/../public'));
+
 app.listen(port, err => {
   if (err) {
     console.error('Server error: ', err);
