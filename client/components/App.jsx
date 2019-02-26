@@ -11,8 +11,18 @@ const { styled } = window;
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    let id;
+    let paths = window.location.pathname.split('/');
+    let path = Number(paths[1]);
+    if (path > 0) {
+      id = path;
+    } else {
+      id = 1;
+    }
+
     this.state = {
-      restaurantId: Math.round(Math.random() * 100) || 1,
+      restaurantId: id,
       date: moment().format('YYYY-MM-DD'),
       time: '19:00',
       partySize: 2,
@@ -101,6 +111,7 @@ const Reservation = styled.div`
   box-shadow: 1px 2px 8px rgba(153, 153, 153, 0.4);
   border-radius: 1%;
   font-family: 'Mukta Mahee', sans-serif;
+  background-color: white;
 `;
 
 const Title = styled.h3`

@@ -73,8 +73,8 @@ npm install
 Run server in nodemon to continuously watch for changes. Run webpack to continuously transpile to the server's entrypoint:
 
 ```sh
-npm run server
-npm run pack
+npm run server-dev
+npm run build-dev
 ```
 
 ### Testing

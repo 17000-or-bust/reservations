@@ -14,6 +14,12 @@ const {
 
 let app = express();
 
+app.get('*.js', function(req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
+
 app.use(express.static(__dirname + '/../public'));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -123,6 +129,8 @@ app.post('/api/reserve/book/:id/:date/:time', (req, res) => {
 
   postTime(id, date, time, loadResponse);
 });
+
+app.use('/:id', express.static(__dirname + '/../public'));
 
 app.listen(port, err => {
   if (err) {
