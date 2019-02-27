@@ -1,8 +1,6 @@
-<h1 style="margin-bottom: 0px">17001 || BUST</h1>
-<h2 style="margin-top: 0px; color: #333333">Reservations API <span style="color: #636363; font-size: 24px">v1.0</span></h2>
-<hr>
+# 17001 || BUST: Reservations API v1.0
 
-##<a style="color: #333333">Table of Contents</a>
+## <a style="color: #333333">Table of Contents</a>
 * [**Reservations.reservations**](#res)
     * [GET /api/reservations/:reservation_id](#getRes)
     * [POST /api/reservations](#postRes)
@@ -16,8 +14,8 @@
 * [**Change History**](#changeHistory)
 <hr>
 
-##<a name="res" style="color: #333333" href="#">Reservations.reservations</a>
-###<a name="getRes" href="#">`GET /api/reservations/:reservation_id`</a>
+## <a name="res" style="color: #333333" href="#">Reservations.reservations</a>
+### <a name="getRes" href="#">`GET /api/reservations/:reservation_id`</a>
 Returns a `{ Reservation }` at a given reservation id.
 
 **URL Params**
@@ -37,8 +35,8 @@ Returns a `{ Reservation }` at a given reservation id.
 **Error Response:**
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
-<br>
-###<a name="postRes" href="#">`POST /api/reservations`</a>
+
+### <a name="postRes" href="#">`POST /api/reservations`</a>
 Returns the `id` of the reservation created in the database.
 
 **Payload Params**
@@ -57,8 +55,8 @@ Returns the `id` of the reservation created in the database.
 **Error Response:**
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
-<br>
-###<a name="putRes" href="#">`PUT /api/reservations/:reservation_id`</a>
+
+### <a name="putRes" href="#">`PUT /api/reservations/:reservation_id`</a>
 Returns the `id` of the reservation edited in the database.
 
 **URL Params**
@@ -81,8 +79,8 @@ Returns the `id` of the reservation edited in the database.
 **Error Response:**
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
-<br>
-###<a name="delRes" href="#">`DELETE /api/reservations/:reservation_id`</a>
+
+### <a name="delRes" href="#">`DELETE /api/reservations/:reservation_id`</a>
 Returns the `{ Reservation }` deleted from the database.
 
 **URL Params**
@@ -104,8 +102,8 @@ Returns the `{ Reservation }` deleted from the database.
   * **Content:** `{ error : "Bad Request error" }`
 <hr>
 
-##<a name="rest" style="color: #333333" href="#">Reservations.restaurants</a>
-###<a name="getRest" href="#">`GET /api/restaurants/:restaurant_id`</a>
+## <a name="rest" style="color: #333333" href="#">Reservations.restaurants</a>
+### <a name="getRest" href="#">`GET /api/restaurants/:restaurant_id`</a>
 Returns a `{ Restaurant }` at a given restaurant id.
 
 **URL Params**
@@ -129,8 +127,8 @@ Returns a `{ Restaurant }` at a given restaurant id.
 **Error Response:**
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
-<br>
-###<a name="postRest" href="#">`POST /api/restaurants`</a>
+
+### <a name="postRest" href="#">`POST /api/restaurants`</a>
 Returns the `id` of the restaurant created in the database.
 
 **Payload Params**
@@ -153,8 +151,8 @@ Returns the `id` of the restaurant created in the database.
 **Error Response:**
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
-<br>
-###<a name="putRest" href="#">`PUT /api/restaurants/:restaurant_id`</a>
+
+### <a name="putRest" href="#">`PUT /api/restaurants/:restaurant_id`</a>
 Returns the `id` of the restaurant edited in the database.
 
 **URL Params**
@@ -181,8 +179,8 @@ Returns the `id` of the restaurant edited in the database.
 **Error Response:**
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
-<br>
-###<a name="delRest" href="#">`DELETE /api/restaurants/:restaurant_id`</a>
+
+### <a name="delRest" href="#">`DELETE /api/restaurants/:restaurant_id`</a>
 Returns the `{ Restaurant }` deleted from the database.
 
 **URL Params**
@@ -208,7 +206,7 @@ Returns the `{ Restaurant }` deleted from the database.
   * **Content:** `{ error : "Bad Request error" }`
 <hr>
 
-##<a name="changeHistory" style="color: #333333" href="#">Change History</a>
+## <a name="changeHistory" style="color: #333333" href="#">Change History</a>
 |Name                                 |Version    |Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Description     |
 |:----------------------------------- |:--------- |:--------- |:------- |
 |[@ecuyle](https://github.com/ecuyle) |1.0        |2019-02-27 |Document initial API CRUD routes for relevant models in the `Reservations` microservice.
