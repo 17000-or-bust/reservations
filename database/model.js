@@ -1,4 +1,4 @@
-var { connection } = require('./index.js');
+var { connection } = require('./mysqlConnect.js/index.js');
 
 let getBooksOnLoad = (id, callback) => {
   connection.query(
