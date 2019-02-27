@@ -3,9 +3,11 @@ let morgan = require('morgan');
 let bodyParser = require('body-parser');
 let moment = require('moment');
 let cors = require('cors');
+const ReservationRouter = require('./routers/Reservations.js');
+const RestaurantRouter = require('./routers/Restaurants.js');
 
 const port = 3003;
-const { connection } = require('../database/index.js');
+const { connection } = require('../database/mysqlConnect.js');
 const {
   getBooksOnLoad,
   getOpenTime,
@@ -13,6 +15,9 @@ const {
 } = require('../database/model.js');
 
 let app = express();
+
+app.use('/api/reservations', ReservationRouter);
+app.use('/api/restaurants', RestaurantRouter);
 
 app.get('*.js', function(req, res, next) {
   req.url = req.url + '.gz';
