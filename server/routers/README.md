@@ -1,21 +1,21 @@
 # 17001 || BUST: Reservations API v1.0
 
 ## <a style="color: #333333">Table of Contents</a>
-* [**Reservations.reservations**](#res)
-    * [GET /api/reservations/:reservation_id](#getRes)
-    * [POST /api/reservations](#postRes)
-    * [PUT /api/reservations/:reservation_id](#putRes)
-    * [DELETE /api/reservations/:reservation_id](#delRes)
-* [**Reservations.restaurants**](#rest)
-    * [GET /api/restaurants/:restaurant_id](#getRest)
-    * [POST /api/restaurants](#postRest)
-    * [PUT /api/restaurants/:restaurant_id](#putRest)
-    * [DELETE /api/restaurants/:restaurant_id](#delRest)
-* [**Change History**](#changeHistory)
+* [**Reservations.reservations**](#reservationsreservations)
+    * [GET /api/reservations/:reservation_id](#get-apireservationsreservation_id)
+    * [POST /api/reservations](#post-apireservations)
+    * [PUT /api/reservations/:reservation_id](#put-apireservationsreservation_id)
+    * [DELETE /api/reservations/:reservation_id](#delete-apireservationsreservation_id)
+* [**Reservations.restaurants**](#reservationsrestaurants)
+    * [GET /api/restaurants/:restaurant_id](#get-apirestaurantsrestaurant_id)
+    * [POST /api/restaurants](#post-apirestaurants)
+    * [PUT /api/restaurants/:restaurant_id](#put-apirestaurantsrestaurant_id)
+    * [DELETE /api/restaurants/:restaurant_id](#delete-apirestaurantsrestaurant_id)
+* [**Change History**](#change-history)
 <hr>
 
-## <a name="res" style="color: #333333" href="#">Reservations.reservations</a>
-### <a name="getRes" href="#">`GET /api/reservations/:reservation_id`</a>
+## Reservations.reservations
+### `GET /api/reservations/:reservation_id`
 Returns a `{ Reservation }` at a given reservation id.
 
 **URL Params**
@@ -36,7 +36,7 @@ Returns a `{ Reservation }` at a given reservation id.
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
-### <a name="postRes" href="#">`POST /api/reservations`</a>
+### `POST /api/reservations`
 Returns the `id` of the reservation created in the database.
 
 **Payload Params**
@@ -56,7 +56,7 @@ Returns the `id` of the reservation created in the database.
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
-### <a name="putRes" href="#">`PUT /api/reservations/:reservation_id`</a>
+### `PUT /api/reservations/:reservation_id`
 Returns the `id` of the reservation edited in the database.
 
 **URL Params**
@@ -80,7 +80,7 @@ Returns the `id` of the reservation edited in the database.
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
-### <a name="delRes" href="#">`DELETE /api/reservations/:reservation_id`</a>
+### `DELETE /api/reservations/:reservation_id`
 Returns the `{ Reservation }` deleted from the database.
 
 **URL Params**
@@ -102,8 +102,8 @@ Returns the `{ Reservation }` deleted from the database.
   * **Content:** `{ error : "Bad Request error" }`
 <hr>
 
-## <a name="rest" style="color: #333333" href="#">Reservations.restaurants</a>
-### <a name="getRest" href="#">`GET /api/restaurants/:restaurant_id`</a>
+## Reservations.restaurants
+### `GET /api/restaurants/:restaurant_id`
 Returns a `{ Restaurant }` at a given restaurant id.
 
 **URL Params**
@@ -128,7 +128,7 @@ Returns a `{ Restaurant }` at a given restaurant id.
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
-### <a name="postRest" href="#">`POST /api/restaurants`</a>
+### `POST /api/restaurants`
 Returns the `id` of the restaurant created in the database.
 
 **Payload Params**
@@ -152,7 +152,7 @@ Returns the `id` of the restaurant created in the database.
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
-### <a name="putRest" href="#">`PUT /api/restaurants/:restaurant_id`</a>
+### `PUT /api/restaurants/:restaurant_id`
 Returns the `id` of the restaurant edited in the database.
 
 **URL Params**
@@ -180,7 +180,7 @@ Returns the `id` of the restaurant edited in the database.
   * **Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
-### <a name="delRest" href="#">`DELETE /api/restaurants/:restaurant_id`</a>
+### `DELETE /api/restaurants/:restaurant_id`
 Returns the `{ Restaurant }` deleted from the database.
 
 **URL Params**
@@ -206,7 +206,7 @@ Returns the `{ Restaurant }` deleted from the database.
   * **Content:** `{ error : "Bad Request error" }`
 <hr>
 
-## <a name="changeHistory" style="color: #333333" href="#">Change History</a>
+## Change History
 |Name                                 |Version    |Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Description     |
 |:----------------------------------- |:--------- |:--------- |:------- |
 |[@ecuyle](https://github.com/ecuyle) |1.0        |2019-02-27 |Document initial API CRUD routes for relevant models in the `Reservations` microservice.
