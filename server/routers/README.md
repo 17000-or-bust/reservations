@@ -1,30 +1,28 @@
-<h1 style="margin-bottom: 0px">17001 || BUST</h1>
-<h2 style="margin-top: 0px; color: #333333">Reservations API <span style="color: #636363; font-size: 24px">v1.0</span></h2>
+# 17001 || BUST: Reservations API v1.0
+
+## <a style="color: #333333">Table of Contents</a>
+* [**Reservations.reservations**](#reservationsreservations)
+    * [GET /api/reservations/:reservation_id](#get-apireservationsreservation_id)
+    * [POST /api/reservations](#post-apireservations)
+    * [PUT /api/reservations/:reservation_id](#put-apireservationsreservation_id)
+    * [DELETE /api/reservations/:reservation_id](#delete-apireservationsreservation_id)
+* [**Reservations.restaurants**](#reservationsrestaurants)
+    * [GET /api/restaurants/:restaurant_id](#get-apirestaurantsrestaurant_id)
+    * [POST /api/restaurants](#post-apirestaurants)
+    * [PUT /api/restaurants/:restaurant_id](#put-apirestaurantsrestaurant_id)
+    * [DELETE /api/restaurants/:restaurant_id](#delete-apirestaurantsrestaurant_id)
+* [**Change History**](#change-history)
 <hr>
 
-##<a style="color: #333333">Table of Contents</a>
-* [**Reservations.reservations**](#res)
-    * [GET /api/reservations/:reservation_id](#getRes)
-    * [POST /api/reservations](#postRes)
-    * [PUT /api/reservations/:reservation_id](#putRes)
-    * [DELETE /api/reservations/:reservation_id](#delRes)
-* [**Reservations.restaurants**](#rest)
-    * [GET /api/restaurants/:restaurant_id](#getRest)
-    * [POST /api/restaurants](#postRest)
-    * [PUT /api/restaurants/:restaurant_id](#putRest)
-    * [DELETE /api/restaurants/:restaurant_id](#delRest)
-* [**Change History**](#changeHistory)
-<hr>
-
-##<a name="res" style="color: #333333" href="#">Reservations.reservations</a>
-###<a name="getRes" href="#">`GET /api/reservations/:reservation_id`</a>
+## Reservations.reservations
+### `GET /api/reservations/:reservation_id`
 Returns a `{ Reservation }` at a given reservation id.
 
 **URL Params**
   * `reservation_id` _(Number)_ : ID of the reservation to retrieve all relevant details
 
 **Success Response:**
-  * **Status Code:** 200
+  * **Status Code:** 200 OK
   * **Content:** `{ Reservation }` conforming to the following format:
 
   |Key              |Type    |
@@ -35,10 +33,10 @@ Returns a `{ Reservation }` at a given reservation id.
   |`time`           |Date    |
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
-<br>
-###<a name="postRes" href="#">`POST /api/reservations`</a>
+
+### `POST /api/reservations`
 Returns the `id` of the reservation created in the database.
 
 **Payload Params**
@@ -51,14 +49,14 @@ Returns the `id` of the reservation created in the database.
   |`time`           |Date    |
 
 **Success Response:**
-  * **Status Code:** 201
-  * **Content:** `{ id }`
+  * **Status Code:** 201 Created
+  * **Content:** `{ id: id (Number) }`
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
-<br>
-###<a name="putRes" href="#">`PUT /api/reservations/:reservation_id`</a>
+
+### `PUT /api/reservations/:reservation_id`
 Returns the `id` of the reservation edited in the database.
 
 **URL Params**
@@ -69,27 +67,26 @@ Returns the `id` of the reservation edited in the database.
 
   |Key              |Type    |
   |:--------------- |:------ |
-  |`id`             |Number  |
   |`restaurant_id`  |Number  |
   |`date`           |Date    |
   |`time`           |Date    |
 
 **Success Response:**
-  * **Status Code:** 201
+  * **Status Code:** 200 OK
   * **Content:** `{ id: id (Number) }`
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
-<br>
-###<a name="delRes" href="#">`DELETE /api/reservations/:reservation_id`</a>
+
+### `DELETE /api/reservations/:reservation_id`
 Returns the `{ Reservation }` deleted from the database.
 
 **URL Params**
   * `reservation_id` _(Number)_ : ID of the reservation to delete
 
 **Success Response:**
-  * **Status Code:** 200
+  * **Status Code:** 200 OK
   * **Content:** `{ Reservation }` conforming to the following format:
 
   |Key              |Type    |
@@ -100,19 +97,19 @@ Returns the `{ Reservation }` deleted from the database.
   |`time`           |Date    |
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 <hr>
 
-##<a name="rest" style="color: #333333" href="#">Reservations.restaurants</a>
-###<a name="getRest" href="#">`GET /api/restaurants/:restaurant_id`</a>
+## Reservations.restaurants
+### `GET /api/restaurants/:restaurant_id`
 Returns a `{ Restaurant }` at a given restaurant id.
 
 **URL Params**
   * `restaurant_id` _(Number)_ : ID of the restaurant to retrieve all relevant details
 
 **Success Response:**
-  * **Status Code:** 200
+  * **Status Code:** 200 OK
   * **Content:** `{ Restaurant }` conforming to the following format:
 
   |Key                    |Type     |
@@ -127,10 +124,10 @@ Returns a `{ Restaurant }` at a given restaurant id.
   |`bookings_today`       |Number   |
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
-<br>
-###<a name="postRest" href="#">`POST /api/restaurants`</a>
+
+### `POST /api/restaurants`
 Returns the `id` of the restaurant created in the database.
 
 **Payload Params**
@@ -147,14 +144,14 @@ Returns the `id` of the restaurant created in the database.
   |`bookings_today`       |Number   |
 
 **Success Response:**
-  * **Status Code:** 201
+  * **Status Code:** 201 Created
   * **Content:** `{ id: id (Number) }`
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
-<br>
-###<a name="putRest" href="#">`PUT /api/restaurants/:restaurant_id`</a>
+
+### `PUT /api/restaurants/:restaurant_id`
 Returns the `id` of the restaurant edited in the database.
 
 **URL Params**
@@ -165,7 +162,6 @@ Returns the `id` of the restaurant edited in the database.
 
   |Key                    |Type     |
   |:--------------------- |:------- |
-  |`id`                   |Number   |
   |`max_party_size`       |Number   |
   |`max_days_to_book`     |Number   |
   |`has_rewards`          |Boolean  |
@@ -175,21 +171,21 @@ Returns the `id` of the restaurant edited in the database.
   |`bookings_today`       |Number   |
 
 **Success Response:**
-  * **Status Code:** 201
+  * **Status Code:** 200 OK
   * **Content:** `{ id: id (Number) }`
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
-<br>
-###<a name="delRest" href="#">`DELETE /api/restaurants/:restaurant_id`</a>
+
+### `DELETE /api/restaurants/:restaurant_id`
 Returns the `{ Restaurant }` deleted from the database.
 
 **URL Params**
   * `restaurant_id` _(Number)_ : ID of the restaurant to delete
 
 **Success Response:**
-  * **Status Code:** 200
+  * **Status Code:** 200 OK
   * **Content:** `{ Restaurant }` conforming to the following format:
 
   |Key                    |Type     |
@@ -204,11 +200,11 @@ Returns the `{ Restaurant }` deleted from the database.
   |`bookings_today`       |Number   |
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 <hr>
 
-##<a name="changeHistory" style="color: #333333" href="#">Change History</a>
+## Change History
 |Name                                 |Version    |Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|Description     |
 |:----------------------------------- |:--------- |:--------- |:------- |
 |[@ecuyle](https://github.com/ecuyle) |1.0        |2019-02-27 |Document initial API CRUD routes for relevant models in the `Reservations` microservice.
