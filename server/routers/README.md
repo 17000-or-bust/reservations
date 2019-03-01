@@ -22,7 +22,7 @@ Returns a `{ Reservation }` at a given reservation id.
   * `reservation_id` _(Number)_ : ID of the reservation to retrieve all relevant details
 
 **Success Response:**
-  * **Status Code:** 200
+  * **Status Code:** 200 OK
   * **Content:** `{ Reservation }` conforming to the following format:
 
   |Key              |Type    |
@@ -33,7 +33,7 @@ Returns a `{ Reservation }` at a given reservation id.
   |`time`           |Date    |
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
 ### `POST /api/reservations`
@@ -49,11 +49,11 @@ Returns the `id` of the reservation created in the database.
   |`time`           |Date    |
 
 **Success Response:**
-  * **Status Code:** 201
-  * **Content:** `{ id }`
+  * **Status Code:** 201 Created
+  * **Content:** `{ id: id (Number) }`
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
 ### `PUT /api/reservations/:reservation_id`
@@ -67,17 +67,16 @@ Returns the `id` of the reservation edited in the database.
 
   |Key              |Type    |
   |:--------------- |:------ |
-  |`id`             |Number  |
   |`restaurant_id`  |Number  |
   |`date`           |Date    |
   |`time`           |Date    |
 
 **Success Response:**
-  * **Status Code:** 201
+  * **Status Code:** 200 OK
   * **Content:** `{ id: id (Number) }`
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
 ### `DELETE /api/reservations/:reservation_id`
@@ -87,7 +86,7 @@ Returns the `{ Reservation }` deleted from the database.
   * `reservation_id` _(Number)_ : ID of the reservation to delete
 
 **Success Response:**
-  * **Status Code:** 200
+  * **Status Code:** 200 OK
   * **Content:** `{ Reservation }` conforming to the following format:
 
   |Key              |Type    |
@@ -98,7 +97,7 @@ Returns the `{ Reservation }` deleted from the database.
   |`time`           |Date    |
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 <hr>
 
@@ -110,7 +109,7 @@ Returns a `{ Restaurant }` at a given restaurant id.
   * `restaurant_id` _(Number)_ : ID of the restaurant to retrieve all relevant details
 
 **Success Response:**
-  * **Status Code:** 200
+  * **Status Code:** 200 OK
   * **Content:** `{ Restaurant }` conforming to the following format:
 
   |Key                    |Type     |
@@ -125,7 +124,7 @@ Returns a `{ Restaurant }` at a given restaurant id.
   |`bookings_today`       |Number   |
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
 ### `POST /api/restaurants`
@@ -145,11 +144,11 @@ Returns the `id` of the restaurant created in the database.
   |`bookings_today`       |Number   |
 
 **Success Response:**
-  * **Status Code:** 201
+  * **Status Code:** 201 Created
   * **Content:** `{ id: id (Number) }`
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
 ### `PUT /api/restaurants/:restaurant_id`
@@ -163,7 +162,6 @@ Returns the `id` of the restaurant edited in the database.
 
   |Key                    |Type     |
   |:--------------------- |:------- |
-  |`id`                   |Number   |
   |`max_party_size`       |Number   |
   |`max_days_to_book`     |Number   |
   |`has_rewards`          |Boolean  |
@@ -173,11 +171,11 @@ Returns the `id` of the restaurant edited in the database.
   |`bookings_today`       |Number   |
 
 **Success Response:**
-  * **Status Code:** 201
+  * **Status Code:** 200 OK
   * **Content:** `{ id: id (Number) }`
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 
 ### `DELETE /api/restaurants/:restaurant_id`
@@ -187,7 +185,7 @@ Returns the `{ Restaurant }` deleted from the database.
   * `restaurant_id` _(Number)_ : ID of the restaurant to delete
 
 **Success Response:**
-  * **Status Code:** 200
+  * **Status Code:** 200 OK
   * **Content:** `{ Restaurant }` conforming to the following format:
 
   |Key                    |Type     |
@@ -202,7 +200,7 @@ Returns the `{ Restaurant }` deleted from the database.
   |`bookings_today`       |Number   |
  
 **Error Response:**
-  * **Code:** 400 Bad Request error
+  * **Status Code:** 400 Bad Request error
   * **Content:** `{ error : "Bad Request error" }`
 <hr>
 

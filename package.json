@@ -16,9 +16,11 @@
     "test": "jest --verbose --coverage"
   },
   "dependencies": {
+    "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
+    "faker": "^4.1.0",
     "jquery": "^3.3.1",
     "moment": "^2.24.0",
     "mysql": "^2.16.0",
