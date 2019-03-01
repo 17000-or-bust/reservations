@@ -3,8 +3,12 @@ const DataGenerator = require('./DataGenerator.js');
 const path = require('path');
 
 // Constants
-const CHUNK_SIZE = 20000;
-const MAX_ROWS = 10 * 1000 * 1000;
+const CHUNK_SIZE = process.argv[2] || 20000;
+const MAX_ROWS = process.argv[3] || 10 * 1000 * 1000;
+
+if (MAX_ROWS < CHUNK_SIZE || MAX_ROWS % CHUNK_SIZE !== 0) {
+  throw new Error('Invalid CHUNK_SIZE and/or MAX_ROWS. Please make sure CHUNK_SIZE < MAX_ROWS and MAX_ROWS is divisible by CHUNK_SIZE with no remainder.');
+}
 
 // Helper functions
 const getRandomInt = (min, max) => {
