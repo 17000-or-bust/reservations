@@ -1,5 +1,6 @@
 const moment = require('moment');
 const DataGenerator = require('./DataGenerator.js');
+const path = require('path');
 
 // Constants
 const CHUNK_SIZE = 20000;
@@ -48,8 +49,8 @@ const generateReservation = () => {
 };
 
 // Generate csv files
-const restaurantGenerator = new DataGenerator(generateRestaurant, CHUNK_SIZE, MAX_ROWS, '../database/restaurants.csv');
-const reservationGenerator = new DataGenerator(generateReservation, CHUNK_SIZE, MAX_ROWS, '../database/reservations.csv');
+const restaurantGenerator = new DataGenerator(generateRestaurant, CHUNK_SIZE, MAX_ROWS, path.join(__dirname, '../data/restaurants.csv'));
+const reservationGenerator = new DataGenerator(generateReservation, CHUNK_SIZE, MAX_ROWS, path.join(__dirname, '../data/reservations.csv'));
 
 restaurantGenerator.generate();
 reservationGenerator.generate();
