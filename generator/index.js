@@ -3,7 +3,7 @@ const DataGenerator = require('./DataGenerator.js');
 const path = require('path');
 
 // Constants
-const CHUNK_SIZE = process.argv[2] || 20000;
+const CHUNK_SIZE = process.argv[2] || 1000;
 const MAX_ROWS = process.argv[3] || 10 * 1000 * 1000;
 
 if (MAX_ROWS < CHUNK_SIZE || MAX_ROWS % CHUNK_SIZE !== 0) {

@@ -6,8 +6,8 @@ class DataGenerator {
   constructor(rowGenerator, CHUNK_SIZE, MAX_ROWS, filepath) {
     this.readable = new ReadableRunner(rowGenerator, CHUNK_SIZE, MAX_ROWS, filepath);
     this.writable = createWriteStream(filepath);
-    this.CHUNK_SIZE = CHUNK_SIZE;
-    this.MAX_ROWS = MAX_ROWS;
+    this.CHUNK_SIZE = CHUNK_SIZE || 1000;
+    this.MAX_ROWS = MAX_ROWS || 10 * 1000 * 1000;
     this.filepath = filepath;
   }
 
@@ -30,8 +30,8 @@ class DataGenerator {
 class ReadableRunner extends Readable {
   constructor(rowGenerator, CHUNK_SIZE, MAX_ROWS, filepath) {
     super();
-    this.CHUNK_SIZE = CHUNK_SIZE;
-    this.MAX_ROWS = MAX_ROWS;
+    this.CHUNK_SIZE = CHUNK_SIZE || 1000;
+    this.MAX_ROWS = MAX_ROWS || 10 * 1000 * 1000;
     this.rowGenerator = rowGenerator;
     this.filepath = filepath;
     this.lastUsedId = 0;
