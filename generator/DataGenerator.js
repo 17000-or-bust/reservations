@@ -3,7 +3,7 @@ const { Readable } = require('stream');
 const { createWriteStream } = require('fs');
 
 class DataGenerator {
-  constructor(rowGenerator, CHUNK_SIZE, MAX_ROWS, filepath) {
+  constructor(rowGenerator, filepath, CHUNK_SIZE, MAX_ROWS) {
     this.readable = new ReadableRunner(rowGenerator, CHUNK_SIZE, MAX_ROWS, filepath);
     this.writable = createWriteStream(filepath);
     this.CHUNK_SIZE = CHUNK_SIZE || 1000;
@@ -72,7 +72,12 @@ class ReadableRunner extends Readable {
   }
 
   _getHashes(currPercent) {
-    return '#'.repeat(Math.floor(currPercent / (100 / this.progressBarLength)));
+    let hashes = '';
+    for (let i = 0; i < (Math.floor(currPercent / (100 / this.progressBarLength)) - 1) / 2; i++) {
+      hashes += '🌊';
+    }
+    hashes += '⛵';
+    return hashes;
   }
 
   _getEmptySpaces(hashes) {

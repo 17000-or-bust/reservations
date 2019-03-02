@@ -53,8 +53,8 @@ const generateReservation = () => {
 };
 
 // Generate csv files
-const restaurantGenerator = new DataGenerator(generateRestaurant, CHUNK_SIZE, MAX_ROWS, path.join(__dirname, '../data/restaurants.csv'));
-const reservationGenerator = new DataGenerator(generateReservation, CHUNK_SIZE, MAX_ROWS, path.join(__dirname, '../data/reservations.csv'));
+const restaurantGenerator = new DataGenerator(generateRestaurant, path.join(__dirname, '../data/restaurants.csv'), CHUNK_SIZE, MAX_ROWS);
+const reservationGenerator = new DataGenerator(generateReservation, path.join(__dirname, '../data/reservations.csv'), CHUNK_SIZE, MAX_ROWS);
 
 restaurantGenerator.generate();
 reservationGenerator.generate();
