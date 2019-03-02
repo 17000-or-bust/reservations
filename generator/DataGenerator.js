@@ -3,11 +3,11 @@ const { Readable } = require('stream');
 const { createWriteStream } = require('fs');
 
 class DataGenerator {
-  constructor(rowGenerator, CHUNK_SIZE, MAX_ROWS, filepath) {
+  constructor(rowGenerator, filepath, CHUNK_SIZE, MAX_ROWS) {
     this.readable = new ReadableRunner(rowGenerator, CHUNK_SIZE, MAX_ROWS, filepath);
     this.writable = createWriteStream(filepath);
-    this.CHUNK_SIZE = CHUNK_SIZE;
-    this.MAX_ROWS = MAX_ROWS;
+    this.CHUNK_SIZE = CHUNK_SIZE || 1000;
+    this.MAX_ROWS = MAX_ROWS || 10 * 1000 * 1000;
     this.filepath = filepath;
   }
 
@@ -30,8 +30,8 @@ class DataGenerator {
 class ReadableRunner extends Readable {
   constructor(rowGenerator, CHUNK_SIZE, MAX_ROWS, filepath) {
     super();
-    this.CHUNK_SIZE = CHUNK_SIZE;
-    this.MAX_ROWS = MAX_ROWS;
+    this.CHUNK_SIZE = CHUNK_SIZE || 1000;
+    this.MAX_ROWS = MAX_ROWS || 10 * 1000 * 1000;
     this.rowGenerator = rowGenerator;
     this.filepath = filepath;
     this.lastUsedId = 0;
@@ -72,7 +72,12 @@ class ReadableRunner extends Readable {
   }
 
   _getHashes(currPercent) {
-    return '#'.repeat(Math.floor(currPercent / (100 / this.progressBarLength)));
+    let hashes = '';
+    for (let i = 0; i < (Math.floor(currPercent / (100 / this.progressBarLength)) - 1) / 2; i++) {
+      hashes += '🌊';
+    }
+    hashes += '⛵';
+    return hashes;
   }
 
   _getEmptySpaces(hashes) {
