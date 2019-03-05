@@ -58,3 +58,4 @@ const reservationGenerator = new DataGenerator(generateReservation, path.join(__
 
 restaurantGenerator.generate();
 reservationGenerator.generate();
+
