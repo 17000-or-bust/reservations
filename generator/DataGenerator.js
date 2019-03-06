@@ -45,7 +45,7 @@ class ReadableRunner extends Readable {
     } else {
       let buffer = '';
       for (let i = 0; i < this.CHUNK_SIZE; i++) {
-        buffer += `${this.lastUsedId},${this.rowGenerator()}\n`;
+        buffer += `${this.rowGenerator()}\n`;
         this.lastUsedId++;
       }
       this.push(buffer);

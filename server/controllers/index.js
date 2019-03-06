@@ -1,34 +1,41 @@
-const mysqlDB = require('../../database/mysqlConnect.js');
-// const pgDB = require('');
-// const mongoDB = require('');
-const DB_OPTIONS = {
-  0: 'mysql',
-  1: 'pg',
-  2: 'mongo',
-};
-const DB_FLAG = 1;
-
-const getControllerFromFlag = flag => {
-  return controllers[DB_OPTIONS[flag]];
-};
+const models = require('../../database/model.js');
+const utils = require('../utils');
 
 const controllers = {
-  mysql: {
-    getRecordsForId: (table, id) => {
-      const query = `SELECT * FROM ${table} WHERE id = ?`;
-      const params = [id];
-    },
+  getBookingsToday: id => {
+    return new Promise((resolve, reject) => {
+      models.getBooksOnLoad(id)
+        .then(res => {
+          resolve(res);    
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
   },
-  pg: {
-    getRecordsForId: (table, id) => {
-
-    },
+  getReservationsForDate: (id, date, time) => {
+    return new Promise((resolve, reject) => {
+      models.getReservationsForDate(id, date, time)
+        .then(reservations => {
+          resolve(utils.getOpenTimes(reservations, time));
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
   },
-  mongo: {
-    getRecordsForId: (table, id) => {
-
-    },
+  createReservation: (id, date, time) => {
+    return new Promise((resolve, reject) => {
+      models.createReservation(id, date, time)
+        .then(result => {
+          resolve(result);
+        })
+        .catch(err => {
+          reject(err);
+        });
+    });
   },
 };
 
-module.exports = getControllerFromFlag(DB_FLAG);
+module.exports = controllers; 
+
