@@ -2,9 +2,9 @@ const pool = require('./pgConnect.js');
 
 const getBooksOnLoad = id => {
   return new Promise((resolve, reject) => {
-    const query = 'SELECT * from restaurants WHERE id=$1';
+    const query = 'SELECT bookings_today from restaurants WHERE id=$1';
     const params = [id];
-    (async () => {
+    const runQuery = async function() {
       const client = await pool.connect();
       try {
         const res = await client.query(query, params);
@@ -12,15 +12,17 @@ const getBooksOnLoad = id => {
       } finally {
         client.release();
       }
-    })().catch(e => {
-      reject(e.stack);
-    });
+    };
+    runQuery()
+      .catch(e => {
+        reject(e.stack);
+      });
   });
 };
 
 const getReservationsForDate = (id, date) => {
   return new Promise((resolve, reject) => {
-    const query = 'SELECT * FROM reservations WHERE restaurant_id=$1 AND date=$2';
+    const query = 'SELECT time FROM reservations WHERE restaurant_id=$1 AND date=$2';
     const params = [id, date];
     (async () => {
       const client = await pool.connect();
