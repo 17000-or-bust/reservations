@@ -23,24 +23,8 @@ os: linux
 #   "files" section altogether. A blank or incomplete "files" section
 #   may cause associated deployments to fail.
 files:
-  - source: client
-    destination: /reservations/client
-  - source: database
-    destination: /reservations/database
-  - source: generator
-    destination: /reservations/generator
-  - source: public
-    destination: /reservations/public
-  - source: server
-    destination: /reservations/server
-  - source: package.json
-    destination: /reservations/package.json
-  - source: webpack.config.js
-    destination: /reservations/webpack.config.js
-  - source: arsenal.js
-    destination: /reservations/arsenal.js
-  - source: bombardment.yml
-    destination: /reservations/bombardment.yml
+  - source: /
+    destination: /home/ec2-user/reservations
 # For deployments to Amazon Linux, Ubuntu Server, or RHEL instances,
 #   you can specify a "permissions" 
 #   section here that describes special permissions to apply to the files 
