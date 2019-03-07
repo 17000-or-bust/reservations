@@ -2,7 +2,7 @@
   "name": "waitonme_reservations",
   "version": "1.0.0",
   "description": "Reservations/calendar component for WaitOnMe app",
-  "author": "Greg Kittleson",
+  "author": "Greg Kittleson & Eric Cuyle",
   "license": "",
   "engines": {
     "node": ">=6.13.0"
@@ -17,14 +17,19 @@
     "generateData": "node generator/index.js"
   },
   "dependencies": {
+    "artillery": "^1.6.0-27",
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
+    "cluster": "^0.7.7",
+    "compression": "^1.7.3",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "faker": "^4.1.0",
     "jquery": "^3.3.1",
     "moment": "^2.24.0",
     "mysql": "^2.16.0",
+    "newrelic": "^5.6.0",
+    "os": "^0.1.1",
     "pg": "^7.8.1",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",

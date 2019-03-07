@@ -2,9 +2,9 @@ const pool = require('./pgConnect.js');
 
 const getBooksOnLoad = id => {
   return new Promise((resolve, reject) => {
-    const query = 'SELECT * from restaurants WHERE id=$1';
+    const query = 'SELECT bookings_today from restaurants WHERE id=$1';
     const params = [id];
-    (async () => {
+    const runQuery = async function() {
       const client = await pool.connect();
       try {
         const res = await client.query(query, params);
@@ -12,21 +12,28 @@ const getBooksOnLoad = id => {
       } finally {
         client.release();
       }
-    })().catch(e => {
-      reject(e.stack);
-    });
+    };
+    runQuery()
+      .catch(e => {
+        reject(e.stack);
+      });
   });
 };
 
 const getReservationsForDate = (id, date) => {
   return new Promise((resolve, reject) => {
-    const query = 'SELECT * FROM reservations WHERE restaurant_id=$1 AND date=$2';
-    const params = [id, date];
+    const query = 'SELECT rs.time_slot_interval AS interval, rv.time AS time, rv.date as date FROM reservations rv RIGHT JOIN restaurants rs ON (rv.restaurant_id=rs.id) WHERE rs.id=$1';
+    const params = [id];
     (async () => {
       const client = await pool.connect();
       try {
         const res = await client.query(query, params);
-        resolve(res.rows);
+        const interval = parseInt(res.rows[0].interval.split(':')[1]);
+        const reservations = [];
+        for (let i = 0; i < res.rows.length; i++) {
+          if (res.rows[i].date === date) reservations.push(res.rows[i]);
+        }
+        resolve({ reservations, interval });
       } finally {
         client.release();
       }
