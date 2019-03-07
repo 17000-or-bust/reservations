@@ -1,54 +1,62 @@
-var { connection } = require('./mysqlConnect.js/index.js');
+const pool = require('./pgConnect.js');
 
-let getBooksOnLoad = (id, callback) => {
-  connection.query(
-    {
-      sql: 'SELECT bookings_today FROM restaurants WHERE id = ' + id + ';',
-      timeout: 2000
-    },
-    (err, response) => {
-      if (err) {
-        callback(err, null);
-      } else {
-        callback(null, response);
+const getBooksOnLoad = id => {
+  return new Promise((resolve, reject) => {
+    const query = 'SELECT * from restaurants WHERE id=$1';
+    const params = [id];
+    (async () => {
+      const client = await pool.connect();
+      try {
+        const res = await client.query(query, params);
+        resolve(res.rows);
+      } finally {
+        client.release();
       }
-    }
-  );
+    })().catch(e => {
+      reject(e.stack);
+    });
+  });
 };
 
-let getOpenTime = (id, date, time, callback) => {
-  console.log('searching for restaurant', id, 'at', time, 'on', date);
-  connection.query(
-    {
-      sql: `SELECT * FROM reservations WHERE restaurant_id = ${id} AND date LIKE '%${date}%' AND time = '${time}'`,
-      timeout: 2000
-    },
-    (err, response) => {
-      if (err) {
-        callback(err, null);
-      } else {
-        callback(null, response);
+const getReservationsForDate = (id, date) => {
+  return new Promise((resolve, reject) => {
+    const query = 'SELECT * FROM reservations WHERE restaurant_id=$1 AND date=$2';
+    const params = [id, date];
+    (async () => {
+      const client = await pool.connect();
+      try {
+        const res = await client.query(query, params);
+        resolve(res.rows);
+      } finally {
+        client.release();
       }
-    }
-  );
+    })().catch(e => {
+      reject(e.stack);
+    });
+  });
 };
 
-let postTime = (id, date, time, callback) => {
-  connection.query(
-    {
-      sql: `INSERT INTO reservations (restaurant_id, date, time) VALUES (${id}, '${date}', '${time}')`,
-      timeout: 2000
-    },
-    (err, res) => {
-      if (err) {
-        callback(err, null);
-      } else {
-        callback(null, res);
+const createReservation = (id, date, time) => {
+  return new Promise((resolve, reject) => {
+    const query = 'INSERT INTO reservations (restaurant_id, date, time) VALUES ($1, $2, $3)';
+    const params = [id, date, time];
+    (async () => {
+      const client = await pool.connect();
+      try {
+        const res = await client.query(query, params);
+        resolve(res);
+      } finally {
+        client.release();
       }
-    }
-  );
+    })().catch(e => {
+      reject(e.stack);
+    });
+  });
 };
 
-module.exports.getBooksOnLoad = getBooksOnLoad;
-module.exports.getOpenTime = getOpenTime;
-module.exports.postTime = postTime;
+module.exports = {
+  getBooksOnLoad,
+  getReservationsForDate,
+  createReservation,
+};
+
