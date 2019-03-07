@@ -19,7 +19,7 @@ class Reserve extends React.Component {
     event.preventDefault();
 
     $.ajax({
-      url: `http://localhost:3003/api/reserve/query/${this.props.restId}/${this.props.date}/${
+      url: `/api/reserve/query/${this.props.restId}/${this.props.date}/${
         this.props.time
       }`,
       method: 'GET',
@@ -47,7 +47,7 @@ class Reserve extends React.Component {
   bookTime(time) {
     var timeTwentyFour = moment(time, ['h:mm A']).format('HH:mm');
     $.ajax({
-      url: `http://localhost:3003/api/reserve/book/${this.props.restId}/${
+      url: `/api/reserve/book/${this.props.restId}/${
         this.props.date
       }/${timeTwentyFour}`,
       method: 'POST',
