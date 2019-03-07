@@ -25,8 +25,6 @@ os: linux
 files:
   - source: client
     destination: /reservations/client
-  - source: data
-    destination: /reservations/data
   - source: database
     destination: /reservations/database
   - source: generator
