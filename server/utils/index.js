@@ -36,12 +36,13 @@ const timeNotReserved = (reservations, time) => {
   return true;
 };
 
-const getOpenTimes = (reservations, time) => {
+const getOpenTimes = (resObject, time) => {
+  const { reservations, interval } = resObject;
   const times = [];
   const min = addMinutes(timeStrToMinutes(time), 150, '-');
   const max = addMinutes(timeStrToMinutes(time), 150);
 
-  for (let i = min; i <= max; i += 30) {
+  for (let i = min; i <= max; i += interval) {
     const currTime = minutesToTimeStr(i);
     if (timeNotReserved(reservations, currTime)) {
       times.push(currTime);
