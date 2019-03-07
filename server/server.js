@@ -1,147 +1,51 @@
-let express = require('express');
-let morgan = require('morgan');
-let bodyParser = require('body-parser');
-let moment = require('moment');
-let cors = require('cors');
+require('newrelic');
+const cluster = require('cluster');
+const numCPUs = require('os').cpus().length;
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const moment = require('moment');
+const cors = require('cors');
+const compression = require('compression');
 const ReservationRouter = require('./routers/Reservations.js');
-const RestaurantRouter = require('./routers/Restaurants.js');
 
-const port = 3003;
-const { connection } = require('../database/mysqlConnect.js');
-const {
-  getBooksOnLoad,
-  getOpenTime,
-  postTime
-} = require('../database/model.js');
+const PORT = 3003;
+const USE_MORGAN = false;
 
 let app = express();
+if (cluster.isMaster) {
+  console.log(`Master ${process.pid} is running`);
 
-app.use('/api/reservations', ReservationRouter);
-app.use('/api/restaurants', RestaurantRouter);
-
-app.get('*.js', function(req, res, next) {
-  req.url = req.url + '.gz';
-  res.set('Content-Encoding', 'gzip');
-  next();
-});
-
-app.use(express.static(__dirname + '/../public'));
-app.use(morgan('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors());
-
-app.get('/api/reserve/load/:id', (req, res) => {
-  var { id } = req.params;
-  let loadResponse = (err, num) => {
-    if (err) {
-      console.error(err);
-      return;
-    } else {
-      res.send(num);
-    }
-  };
-  getBooksOnLoad(id, loadResponse);
-});
-
-app.get('/api/reserve/query/:id/:date/:time', (req, res) => {
-  var { id, date, time } = req.params;
-
-  var max = 5;
-  var window = 30;
-  var splitTime = time.split(':');
-  var dummyTime = moment()
-    .hour(splitTime[0])
-    .minute(splitTime[1])
-    .subtract(max * window, 'minute');
-  var testTimes = [dummyTime.format('HH:mm')];
-  var times = [];
-
-  // scan from 2.5 hours before queried time to 2.5 hours after
-  for (var i = 1; i <= max * 2; i++) {
-    var laterTime = dummyTime
-      .add(window, 'minute')
-      .format('HH:mm')
-      .toString();
-
-    testTimes.push(laterTime);
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
   }
 
-  var numQueries = 0;
+  cluster.on('exit', (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
+  });
 
-  let sendTimes = (err, timeResult) => {
+} else {
+  console.log(`Worker ${process.pid} started`);
+  app.use(cors());
+  if (USE_MORGAN) app.use(morgan('dev'));
+  app.use(express.static(__dirname + '/../public'));
+
+  app.get('*.js', function(req, res, next) {
+    req.url = req.url + '.gz';
+    res.set('Content-Encoding', 'gzip');
+    next();
+  });
+
+  app.use('/api/reserve', ReservationRouter);
+
+  app.use('/:id', express.static(__dirname + '/../public'));
+
+  app.listen(PORT, err => {
     if (err) {
-      console.error(err);
+      console.error('Server error: ', err);
       return;
     } else {
-      if (!timeResult[0]) {
-        times.push(testTimes[numQueries]);
-      }
-      var timeDiffs = times.map((timeSlot, index) => {
-        var splitTimeSlot = timeSlot.split(':');
-        var time1 = moment()
-          .hour(splitTimeSlot[0])
-          .minute(splitTimeSlot[1]);
-        var splitTimeQuery = time.split(':');
-        var time2 = moment()
-          .hour(splitTimeQuery[0])
-          .minute(splitTimeQuery[1]);
-
-        return [Math.abs(time1.diff(time2, 'minute')), index];
-      });
-      timeDiffs.sort((a, b) => a[0] - b[0]);
-      var topFiveTimes = timeDiffs
-        .slice(0, 5)
-        .sort((a, b) => a[1] - b[1])
-        .map(tuple => {
-          return times[tuple[1]];
-        });
-      res.status(200).send(topFiveTimes);
+      console.log('Listening at Port', PORT);
     }
-  };
-
-  let nextQuery = (err, time) => {
-    if (err) {
-      console.error(err);
-      return;
-    } else {
-      if (!time[0]) {
-        times.push(testTimes[numQueries]);
-      }
-      numQueries++;
-
-      if (numQueries < testTimes.length - 1) {
-        getOpenTime(id, date, testTimes[numQueries], nextQuery);
-      } else {
-        getOpenTime(id, date, testTimes[numQueries], sendTimes);
-      }
-    }
-  };
-
-  getOpenTime(id, date, testTimes[numQueries], nextQuery);
-});
-
-app.post('/api/reserve/book/:id/:date/:time', (req, res) => {
-  var { id, date, time } = req.params;
-  let loadResponse = (err, result) => {
-    if (err) {
-      console.error(err);
-      return;
-    } else {
-      res.status(201).send(result);
-    }
-  };
-
-  postTime(id, date, time, loadResponse);
-});
-
-app.use('/:id', express.static(__dirname + '/../public'));
-
-app.listen(port, err => {
-  if (err) {
-    console.error('Server error: ', err);
-    return;
-  } else {
-    console.log('Listening at Port', port);
-  }
-});
+  });
+}

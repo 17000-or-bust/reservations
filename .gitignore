@@ -29,3 +29,6 @@ database/config.js
 
 # Raw generated data
 data/
+
+#new relic key
+newrelic.js
