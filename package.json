@@ -48,7 +48,6 @@
     "compression-webpack-plugin": "^2.0.0",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.9.1",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "jest": "^24.1.0",
     "morgan": "^1.9.1",
     "react": "^16.8.1",

@@ -9,8 +9,8 @@ const cors = require('cors');
 const compression = require('compression');
 const ReservationRouter = require('./routers/Reservations.js');
 
-const PORT = 80;
-const USE_MORGAN = false;
+const PORT = 3000;
+const USE_MORGAN = true;
 
 let app = express();
 if (cluster.isMaster) {
